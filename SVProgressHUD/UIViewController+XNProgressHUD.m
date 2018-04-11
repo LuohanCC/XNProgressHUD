@@ -26,7 +26,6 @@ static char VCXNProgressHUD;
     return hudView;
 }
 
-// replaceMethods
 + (void)load {
     [self exchangeMethod:@"viewDidDisappear:" exchangeMethod:@selector(vcViewDidDisappear:)];
 }

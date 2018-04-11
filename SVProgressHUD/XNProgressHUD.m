@@ -443,6 +443,12 @@
     [self didDismiss];
 }
 
+- (void)dismissWithDelay:(NSTimeInterval)delay {
+    if(_showing && delay > 0) {
+        [self startDismissTimerWithDuration:delay];
+    }
+}
+
 - (void)display {
     if(self.disposableDelayResponse <= 0 || _showing) {
         [self stopTimers];

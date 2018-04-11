@@ -7,7 +7,6 @@
 
 #import <UIKit/UIKit.h>
 #import "XNRefreshViewProtocol.h"
-#import "XNProgressHUDProtocol.h"
 
 
 @interface XNRefreshView : UIView <XNRefreshViewProtocol>

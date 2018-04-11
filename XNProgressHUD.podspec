@@ -7,26 +7,14 @@
 #
 
 Pod::Spec.new do |s|
-
-  # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  These will help people to find your library, and whilst it
-  #  can feel like a chore to fill in it's definitely to your advantage. The
-  #  summary should be tweet-length, and the description more in depth.
-  #
-
+    
   s.name         = "XNProgressHUD"
   s.version      = "1.0"
   s.summary      = "一款支持自定义状态视图的的HUD"
-
-  # This description is used to generate tags and improve search results.
-  #   * Think: What does it do? Why did you write it? What is the focus?
-  #   * Try to keep it short, snappy and to the point.
-  #   * Write the description between the DESC delimiters below.
-  #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = <<-DESC
+  s.description  =
+  <<-DESC
   一款支持自定义状态视图的的HUD，继承自XNProgressHUD并实现XNProgressHUDMethod中的方法。
-                   DESC
+  DESC
 
   s.homepage = "https://github.com/LuohanCC/XNProgressHUD"
   s.license  = { :type => 'MIT', :file => 'LICENSE' }

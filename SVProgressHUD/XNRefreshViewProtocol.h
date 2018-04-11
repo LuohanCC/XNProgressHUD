@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XNProgressHUDProtocol.h"
+#import "XNProgressHUD.h"
 
 @protocol XNRefreshViewProtocol <NSObject>
 /*

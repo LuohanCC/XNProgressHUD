@@ -57,7 +57,6 @@
 		28A0B3A7207CA72900D03037 /* UIViewController+XNProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XNProgressHUD.h"; sourceTree = "<group>"; };
 		28A0B3A8207CA72900D03037 /* XNProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNProgressHUD.m; sourceTree = "<group>"; };
 		28A0B3A9207CA72900D03037 /* XNRefreshViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNRefreshViewProtocol.h; sourceTree = "<group>"; };
-		28A0B3AA207CA72900D03037 /* XNProgressHUDProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNProgressHUDProtocol.h; sourceTree = "<group>"; };
 		28A0B3AB207CA72900D03037 /* XNRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNRefreshView.h; sourceTree = "<group>"; };
 		28A0B3AC207CA72900D03037 /* UIViewController+XNProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XNProgressHUD.m"; sourceTree = "<group>"; };
 		28A0B3AD207CA72900D03037 /* XNProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNProgressHUD.h; sourceTree = "<group>"; };
@@ -132,7 +131,6 @@
 				28A0B3AC207CA72900D03037 /* UIViewController+XNProgressHUD.m */,
 				28A0B3AD207CA72900D03037 /* XNProgressHUD.h */,
 				28A0B3A8207CA72900D03037 /* XNProgressHUD.m */,
-				28A0B3AA207CA72900D03037 /* XNProgressHUDProtocol.h */,
 				28A0B3AB207CA72900D03037 /* XNRefreshView.h */,
 				28A0B3A6207CA72900D03037 /* XNRefreshView.m */,
 				28A0B3A9207CA72900D03037 /* XNRefreshViewProtocol.h */,
