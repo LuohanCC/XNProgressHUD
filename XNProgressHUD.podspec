@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "XNProgressHUD"
-  s.version      = "0.0.1"
+  s.version      = "1.0"
   s.summary      = "一款支持自定义状态视图的的HUD"
 
   # This description is used to generate tags and improve search results.

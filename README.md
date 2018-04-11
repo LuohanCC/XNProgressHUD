@@ -5,9 +5,7 @@
 ![Markdown](http://i1.bvimg.com/640753/cff1719003ecaf97.gif)
 ![Markdown](http://i1.bvimg.com/640753/08066b4efbbe0a19.gif)
 ![Markdown](http://i1.bvimg.com/640753/fa27c0eeff267f51.gif)
-
-<div class="pos" position=float align=center><img width="341" height="260" src="http://i1.bvimg.com/640753/fa27c0eeff267f51.gif"/><p>111</p></div>
-
+#
 
 一款支持支持自定义的轻量级HUD，支持垂直、水平两种样式。SVProgressHUD非常灵活，所见的部分都可根据自己的要求进行自定义，包括自义动画效果或图片，只需要实现相关协议方法。
 
