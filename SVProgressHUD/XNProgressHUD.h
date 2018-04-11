@@ -43,12 +43,12 @@
 + (instancetype)shared;
 
 /**
- * 一次性生效：设置延时时间（延时显示时间、延时消失时间）
+ * 只对下一次显示生效：设置延时时间（延时显示时间、延时消失时间）
  */
 - (void)setDisposableDelayResponse:(NSTimeInterval)delayResponse delayDismiss:(NSTimeInterval)delayDismiss;
 
 /**
- * 一次性生效：设置遮罩类型
+ * 只对下一次显示生效：设置遮罩类型
  */
 - (void)setMaskType:(XNProgressHUDMaskType)maskType;
 - (void)setMaskType:(XNProgressHUDMaskType)maskType hexColor:(uint32_t)color;

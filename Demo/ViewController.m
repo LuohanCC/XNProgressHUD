@@ -29,6 +29,7 @@
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:225/255.0 green:101/255.0 blue:49/255.0 alpha:1];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.title = @"XNProgressHUD";
+    self.view.backgroundColor = [UIColor colorWithRed:228/255.0 green:230/255.0 blue:234/255.0 alpha:1];
     [self initSubviews];
 }
 
