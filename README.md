@@ -83,6 +83,8 @@ UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
 
  ## GitHub地址
  https://github.com/LuohanCC/XNProgressHUD
+ #
+**如果你觉得不错，请给我Star ★★★★★★★★★★**
 ![给我Star吧](http://i1.bvimg.com/640753/6e7fb07f7b843b54.png)
-#
+
 
