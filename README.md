@@ -77,6 +77,12 @@ UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
  如果需要自定义加载视图的显示内容和动画样式，请重写XNRefreshView并实现XNRefreshViewProtocol中的协议方法即可，具体如下
  * 自定义XNRefreshView并实现XNRefreshViewProtocol中的协议方法；
  * 继承XNProgressHUD并实现XNProgressHUDMethod中的协议方法。
- 
+  
+
+
+
  ## GitHub地址
  https://github.com/LuohanCC/XNProgressHUD
+![给我Star吧](http://i1.bvimg.com/640753/6e7fb07f7b843b54.png)
+#
+
