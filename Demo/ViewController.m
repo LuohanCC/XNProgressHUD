@@ -31,6 +31,13 @@
     self.title = @"XNProgressHUD";
     self.view.backgroundColor = [UIColor colorWithRed:228/255.0 green:230/255.0 blue:234/255.0 alpha:1];
     [self initSubviews];
+    
+    /*
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width)];
+    [self.view addSubview:v];
+    [XNHUD setTargetView:v position:CGPointMake(v.bounds.size.width/2, v.bounds.size.height/2)];
+    [XNHUD showLoadingWithTitle:@"指定显示在某个View上"];
+     */
 }
 
 - (void)initSubviews {

@@ -12,8 +12,6 @@
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UIView *shadeContentView;
 @property (nonatomic, strong) UIView *contentView;
-
-@property (nonatomic, strong) UIView *successView;
 @property (nonatomic, strong) XNRefreshView *refreshView;
 @property (nonatomic, strong) UILabel *titleLabel;
 
@@ -174,12 +172,32 @@
     return _titleLabel;
 }
 
+@synthesize targetView = _targetView;
 - (UIView *)targetView {
-    if(_viewController) {
-        return _viewController.view;
+    if(_targetView) {
+        return _targetView;
     }else{
-        return [UIApplication sharedApplication].delegate.window;
+        if(_viewController) {
+            return _viewController.view;
+        }else{
+            return [UIApplication sharedApplication].delegate.window;
+        }
     }
+}
+
+- (void)setTargetView:(UIView *)targetView {
+    _targetView = targetView;
+    _viewController = nil;
+}
+
+- (void)setTargetView:(UIView *)targetView position:(CGPoint)position {
+    self.targetView = targetView;
+    self.position = position;
+}
+
+- (void)setViewController:(UIViewController *)viewController {
+    _viewController = viewController;
+    _targetView = nil;
 }
 
 - (NSTimeInterval)minimumDelayDismissDuration {

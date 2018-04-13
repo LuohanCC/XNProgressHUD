@@ -65,5 +65,5 @@
 
  ## 自定义XNProgressHUD
  如果需要自定义加载视图的显示内容和动画样式，请重写XNRefreshView并实现XNRefreshViewProtocol中的协议方法即可，具体如下
- * 1.自定义XNRefreshView并实现XNRefreshViewProtocol中的协议方法；
- * 2.继承XNProgressHUD并实现XNProgressHUDMethod中的协议方法。
+ * 自定义XNRefreshView并实现XNRefreshViewProtocol中的协议方法；
+ * 继承XNProgressHUD并实现XNProgressHUDMethod中的协议方法。

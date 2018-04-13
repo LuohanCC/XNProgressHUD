@@ -138,10 +138,11 @@ XNHUDMaskColorMake(unsigned int  clear, unsigned int black, unsigned int custom)
 @property (nonatomic, assign) XNRefreshViewStyle refreshStyle; //样式
 @property (nonatomic, assign) CGColorRef shadowColor; //阴影颜色
 @property (nonatomic, assign) CGFloat progress;
-@property (nonatomic, assign) BOOL showing; //是否正在显示
+@property (nonatomic, assign) BOOL showing; 
 @property (nonatomic, strong) NSString *title; //文字
-@property (nonatomic, strong) UIColor *tintColor; //色调
+@property (nonatomic, strong) UIColor *tintColor; //主色色调
 @property (nonatomic, weak)   UIViewController *viewController; //是否显示在ViewController上，为空时显示在Window上
+@property (nonatomic, readonly, weak) UIView *targetView; //指定显示在某个View上
 //MaskView
 @property (nonatomic, assign, readonly) XNProgressHUDMaskType maskType;
 @property (nonatomic, assign) struct XNHUDMaskColor maskColor;
@@ -162,6 +163,12 @@ XNHUDMaskColorMake(unsigned int  clear, unsigned int black, unsigned int custom)
  */
 - (void)setMaskType:(XNProgressHUDMaskType)maskType;
 - (void)setMaskType:(XNProgressHUDMaskType)maskType hexColor:(uint32_t)color;
+
+
+/**
+ * 设置目标显示视图，并传入HUD显示位置
+ */
+- (void)setTargetView:(UIView *)targetView position:(CGPoint)position;
 
 /**
  * 是否正在显示
