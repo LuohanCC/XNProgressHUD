@@ -476,7 +476,7 @@
     }
 }
 
-- (void)didDisplay {
+- (void)didDisplayOnMainQueue {
     // 标题
     self.titleLabel.text = self.title;
     // 样式,设置HUD的显示内容
@@ -532,7 +532,7 @@
     } completion:^(BOOL finished) {
         weakSelf.disposableDelayResponse = 0.f;
     }];
-
+    
     // 延时自动消失
     if(_disposableDelayDismiss > 0) {
         [self startDismissTimerWithDuration:_disposableDelayDismiss];
@@ -551,8 +551,16 @@
     }
 }
 
-// 从内部关闭，由定时器调用或直接调用，无强引用隐患，无需清理强引用资源
+- (void)didDisplay {
+    [self performSelectorOnMainThread:@selector(didDisplayOnMainQueue) withObject:nil waitUntilDone:NO];
+}
+
 - (void)didDismiss {
+    [self performSelectorOnMainThread:@selector(didDismissOnMainQueue) withObject:nil waitUntilDone:NO];
+}
+
+// 从内部关闭，由定时器调用或直接调用，无强引用隐患，无需清理强引用资源
+- (void)didDismissOnMainQueue {
     BOOL showing = self.showing;
     if(!showing) return;
     self.showing = NO;
