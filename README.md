@@ -2,10 +2,10 @@
 
 一个丝滑、灵活的HUD
 
-![加载中](http://i1.bvimg.com/640753/e38d1f1d0f589b58.gif)
+![加载中](http://i4.bvimg.com/640753/e38d1f1d0f589b58.gif)
 ![操作成功/操作失败](http://i1.bvimg.com/640753/cff1719003ecaf97.gif)
 ![进度显示](http://i1.bvimg.com/640753/08066b4efbbe0a19.gif)
-![垂直方向](http://i1.bvimg.com/640753/fa27c0eeff267f51.gif)
+![垂直方向](http://i4.bvimg.com/640753/fa27c0eeff267f51.gif)
 #
 
 一款支持各种自定义的轻量级HUD，支持垂直、水平两种样式。SVProgressHUD非常灵活，所见的部分都可根据自己的要求进行自定义，包括自义动画效果或图片，只需要实现相关协议方法。
