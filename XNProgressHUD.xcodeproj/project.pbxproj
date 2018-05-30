@@ -92,8 +92,8 @@
 		28A0B350207C9DC900D03037 = {
 			isa = PBXGroup;
 			children = (
-				28A0B3A5207CA72900D03037 /* SVProgressHUD */,
-				28A0B392207CA6B700D03037 /* Demo */,
+				28A0B3A5207CA72900D03037 /* code */,
+				28A0B392207CA6B700D03037 /* demo */,
 				28A0B38E207C9E9400D03037 /* README.md */,
 				28A0B38F207C9E9400D03037 /* XNProgressHUD.podspec */,
 				28DFD3F32080B24E00AE575B /* LICENSE */,
@@ -111,7 +111,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		28A0B392207CA6B700D03037 /* Demo */ = {
+		28A0B392207CA6B700D03037 /* demo */ = {
 			isa = PBXGroup;
 			children = (
 				28A0B393207CA6B700D03037 /* AppDelegate.h */,
@@ -124,10 +124,10 @@
 				28A0B39D207CA6B700D03037 /* ViewController.h */,
 				28A0B395207CA6B700D03037 /* ViewController.m */,
 			);
-			path = Demo;
+			path = demo;
 			sourceTree = "<group>";
 		};
-		28A0B3A5207CA72900D03037 /* SVProgressHUD */ = {
+		28A0B3A5207CA72900D03037 /* code */ = {
 			isa = PBXGroup;
 			children = (
 				28A0B3A7207CA72900D03037 /* UIViewController+XNProgressHUD.h */,
@@ -138,7 +138,7 @@
 				28A0B3A6207CA72900D03037 /* XNRefreshView.m */,
 				28A0B3A9207CA72900D03037 /* XNRefreshViewProtocol.h */,
 			);
-			path = SVProgressHUD;
+			path = code;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
