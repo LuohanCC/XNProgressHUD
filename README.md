@@ -22,7 +22,7 @@
 [XNHUD setPosition:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height * 0.7)];
 // 设置主色调
 [XNHUD setTintColor:[UIColor colorWithRed:38/255.0 green:50/255.0 blue:56/255.0 alpha:0.8]];
-// 设置相应的maskType转态下的颜色（16进制颜色值）
+// 设置相应的maskType状态下的颜色（16进制颜色值）
 [XNHUD setMaskType:(XNProgressHUDMaskTypeBlack)  hexColor:0x00000044];
 [XNHUD setMaskType:(XNProgressHUDMaskTypeCustom) hexColor:0xff000044];
  ```
