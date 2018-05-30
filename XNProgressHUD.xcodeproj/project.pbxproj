@@ -19,6 +19,7 @@
 		28A0B3AE207CA72900D03037 /* XNRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A0B3A6207CA72900D03037 /* XNRefreshView.m */; };
 		28A0B3AF207CA72900D03037 /* XNProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A0B3A8207CA72900D03037 /* XNProgressHUD.m */; };
 		28A0B3B0207CA72900D03037 /* UIViewController+XNProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A0B3AC207CA72900D03037 /* UIViewController+XNProgressHUD.m */; };
+		28DFD3F42080B24F00AE575B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 28DFD3F32080B24E00AE575B /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		28A0B3AB207CA72900D03037 /* XNRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNRefreshView.h; sourceTree = "<group>"; };
 		28A0B3AC207CA72900D03037 /* UIViewController+XNProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XNProgressHUD.m"; sourceTree = "<group>"; };
 		28A0B3AD207CA72900D03037 /* XNProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNProgressHUD.h; sourceTree = "<group>"; };
+		28DFD3F32080B24E00AE575B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				28A0B392207CA6B700D03037 /* Demo */,
 				28A0B38E207C9E9400D03037 /* README.md */,
 				28A0B38F207C9E9400D03037 /* XNProgressHUD.podspec */,
+				28DFD3F32080B24E00AE575B /* LICENSE */,
 				28A0B35A207C9DC900D03037 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				28A0B391207C9E9400D03037 /* XNProgressHUD.podspec in Resources */,
 				28A0B3A1207CA6B700D03037 /* Main.storyboard in Resources */,
 				28A0B3A4207CA6B700D03037 /* Info.plist in Resources */,
+				28DFD3F42080B24F00AE575B /* LICENSE in Resources */,
 				28A0B3A0207CA6B700D03037 /* LaunchScreen.storyboard in Resources */,
 				28A0B39E207CA6B700D03037 /* Assets.xcassets in Resources */,
 				28A0B390207C9E9400D03037 /* README.md in Resources */,
