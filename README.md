@@ -1,13 +1,12 @@
 # XNProgressHUD
 
 一个丝滑、灵活的HUD
-
-![加载中](http://i4.bvimg.com/640753/e38d1f1d0f589b58.gif)
-![操作成功/操作失败](http://i1.bvimg.com/640753/cff1719003ecaf97.gif)
-![进度显示](http://i1.bvimg.com/640753/08066b4efbbe0a19.gif)
-![垂直方向](http://i4.bvimg.com/640753/fa27c0eeff267f51.gif)
 #
-
+![加载中](http://www.wailian.work/images/2018/08/03/animation01.gif)
+![操作成功/操作失败](http://www.wailian.work/images/2018/08/03/animation02.gif)
+![进度显示](http://www.wailian.work/images/2018/08/03/animation03.gif)
+![垂直方向](http://www.wailian.work/images/2018/08/03/animation04.gif)
+#
 一款支持各种自定义的轻量级HUD，支持垂直、水平两种样式。XNProgressHUD非常灵活，所见的部分都可根据自己的要求进行自定义，包括自义动画效果或图片，只需要实现相关协议方法。
 
 ## 安装使用
@@ -85,6 +84,6 @@ UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
  https://github.com/LuohanCC/XNProgressHUD
  #
 **如果你觉得不错，请给我Star ★★★★★★★★★★**
-![给我Star吧](http://i1.bvimg.com/640753/6e7fb07f7b843b54.png)
+![给我Star吧](http://www.wailian.work/images/2018/08/03/star.png)
 
 
