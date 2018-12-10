@@ -61,9 +61,8 @@ XNHUDMaskColorMake(unsigned int  clear, unsigned int black, unsigned int custom)
     return maskColor;
 }
 
-// 与RefreshView之间的接口方法，扩展、自定义RefreshView时需要实现重写以下方法
+// 控制RefreshView显示状态的方法，与协议XNRefreshViewProtocol对应
 @protocol XNProgressHUDMethod <NSObject>
-- (UIView *)refreshView;
 - (XNRefreshViewStyle)getStyleFromRefreshView;
 - (void)setStyleInRefreshView:(XNRefreshViewStyle)style;
 - (void)startRefreshAnimation;
@@ -125,6 +124,7 @@ XNHUDMaskColorMake(unsigned int  clear, unsigned int black, unsigned int custom)
 
 @interface XNProgressHUD : NSObject <XNProgressHUDProtocol, XNProgressHUDMethod>
 
+@property (nonatomic, strong, readwrite) UIView *refreshView;
 @property (nonatomic, assign) XNProgressHUDOrientation orientation;
 @property (nonatomic, assign, readonly) XNProgressHUDStyle style;
 @property (nonatomic, assign) CGFloat borderWidth; //圆角
@@ -164,7 +164,6 @@ XNHUDMaskColorMake(unsigned int  clear, unsigned int black, unsigned int custom)
 - (void)setMaskType:(XNProgressHUDMaskType)maskType;
 - (void)setMaskType:(XNProgressHUDMaskType)maskType hexColor:(uint32_t)color;
 
-
 /**
  * 设置目标显示视图，并传入HUD显示位置
  */
@@ -179,7 +178,7 @@ XNHUDMaskColorMake(unsigned int  clear, unsigned int black, unsigned int custom)
  * 清理资源
  */
 - (void)clearUp;
+
+
 @end
-
-
 

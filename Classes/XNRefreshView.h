@@ -8,7 +8,6 @@
 #import <UIKit/UIKit.h>
 #import "XNRefreshViewProtocol.h"
 
-
 @interface XNRefreshView : UIView <XNRefreshViewProtocol>
 @property (nullable, nonatomic, readonly) CAShapeLayer *refreshShapeLayer;
 @property (nullable, nonatomic, readonly) CAShapeLayer *shapeLayer;
@@ -19,12 +18,11 @@
 @property (nonatomic, readwrite) CGFloat lineWidth;
 @property (nonatomic, readwrite) NSTimeInterval duration;
 
-@property (nonatomic, assign) XNRefreshViewStyle style; //样式
-@property (nonatomic, readwrite) CGFloat progress;
+@property (nonatomic, assign) XNRefreshViewStyle style;
+@property (nonatomic, assign) CGFloat progress;
 @property (nullable, nonatomic, readwrite) UILabel *label;
 @property (nullable, nonatomic, strong) UIImage *infoImage;
 @property (nullable, nonatomic, strong) UIImage *errorImage;
 @property (nullable, nonatomic, strong) UIImage *successImage;
-
 
 @end

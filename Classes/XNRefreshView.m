@@ -13,7 +13,7 @@ static NSString *kMMRingRotationAnimationKey = @"materialdesignspinner.rotation"
 
 @interface XNRefreshView()
 @property (nonatomic, assign) BOOL isFirst;
-@property (nonatomic, readwrite) BOOL animating;
+@property (nonatomic, assign, getter=isAnimating) BOOL animating;
 @property (nonatomic, strong) UIImageView *imageView;
 
 
@@ -145,8 +145,8 @@ static NSString *kMMRingRotationAnimationKey = @"materialdesignspinner.rotation"
 }
 
 - (void)registerNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startAnimation) name:UIApplicationDidBecomeActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopAnimation) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(xn_startAnimation) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(xn_stopAnimation) name:UIApplicationDidEnterBackgroundNotification object:nil];
 }
 
 - (void)removeNotifiations {
@@ -512,13 +512,6 @@ static NSString *kMMRingRotationAnimationKey = @"materialdesignspinner.rotation"
     }
 }
 
-
-#pragma mark - XNRefreshViewProtocol
-@synthesize style = _style;
-- (XNRefreshViewStyle)style {
-    return _style;
-}
-
 - (void)setStyle:(XNRefreshViewStyle)style {
     UIImage *image = nil;
     switch (style) {
@@ -595,11 +588,28 @@ static NSString *kMMRingRotationAnimationKey = @"materialdesignspinner.rotation"
     _style = style;
 }
 
-- (BOOL)isAnimating {
-    return _animating;
+#pragma mark - XNRefreshViewProtocol
+- (NSNumber *)xn_getStyle {
+    return [NSNumber numberWithUnsignedInteger:_style];;
 }
 
-- (void)startAnimation {
+- (void)xn_setStyle:(NSNumber *)styleValue {
+    if (styleValue) {
+        self.style = styleValue.unsignedIntegerValue;
+    }
+}
+
+- (void)xn_setProgress:(NSNumber *)progressValue {
+    if (progressValue) {
+        self.progress = progressValue.floatValue;
+    }
+}
+
+- (NSNumber *)xn_isAnimating {
+    return [NSNumber numberWithUnsignedInteger:_animating];;
+}
+
+- (void)xn_startAnimation {
     _animating = YES;
     [self setNeedsDisplay];
     switch (_style) {
@@ -633,7 +643,7 @@ static NSString *kMMRingRotationAnimationKey = @"materialdesignspinner.rotation"
     }
 }
 
-- (void)stopAnimation {
+- (void)xn_stopAnimation {
     _animating = NO;
     switch (_style) {
         case XNRefreshViewStyleLoading:{

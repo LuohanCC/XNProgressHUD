@@ -8,13 +8,13 @@
 #import "XNProgressHUD.h"
 #import "XNRefreshView.h"
 
-@interface XNProgressHUD()
+@interface XNProgressHUD() {
+    UIView *_refreshView;
+}
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UIView *shadeContentView;
 @property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, strong) XNRefreshView *refreshView;
 @property (nonatomic, strong) UILabel *titleLabel;
-
 @property (nonatomic, strong) NSTimer *displayTimer;
 @property (nonatomic, strong) NSTimer *dismissTimer;
 @property (nonatomic, assign) CGRect frame;
@@ -129,6 +129,26 @@
             break;
     }
 }
+
+- (UIView *)refreshView {
+    if(!_refreshView) {
+        XNRefreshView *view = [XNRefreshView new];
+        view.tintColor = self.titleLabel.textColor;
+        view.lineWidth = 2.f;
+        _refreshView = view;
+    }
+    return _refreshView;
+}
+
+
+- (void)setRefreshView:(UIView *)refreshView {
+    if (refreshView) {
+        _refreshView = refreshView;
+        _refreshView.tintColor = _titleLabel.textColor;
+        [self.contentView addSubview:refreshView];
+    }
+}
+
 
 - (UIView *)shadeContentView {
     if(!_shadeContentView) {
@@ -606,35 +626,40 @@
     [self stopTimers];
 }
 
-
-#pragma mark - 与RefreshView之间的接口方法，扩展、自定义RefreshView时需要实现重写以下方法
-- (UIView *)refreshView {
-    if(!_refreshView) {
-        _refreshView = [XNRefreshView new];
-        _refreshView.tintColor = self.titleLabel.textColor;
-        _refreshView.lineWidth = 2.f;
-    }
-    return _refreshView;
-}
-
+#pragma mark - 控制RefreshView显示状态的方法
 - (XNRefreshViewStyle)getStyleFromRefreshView {
-    return ((XNRefreshView *)self.refreshView).style;
+    XNRefreshViewStyle style = XNRefreshViewStyleNone;
+    if ([self.refreshView respondsToSelector:@selector(xn_getStyle)]) {
+        NSNumber *value = [self.refreshView performSelector:@selector(xn_getStyle)];
+        style = value.unsignedIntegerValue;
+    }
+    return style;
 }
 
 - (void)setStyleInRefreshView:(XNRefreshViewStyle)style {
-    ((XNRefreshView *)self.refreshView).style = style;
+    if ([self.refreshView respondsToSelector:@selector(xn_setStyle:)]) {
+        NSNumber *value = [NSNumber numberWithUnsignedInteger:style];
+        [self.refreshView performSelector:@selector(xn_setStyle:) withObject:value];
+    }
 }
 
 - (void)startRefreshAnimation {
-    [((XNRefreshView *)self.refreshView) startAnimation];
+    if ([self.refreshView respondsToSelector:@selector(xn_startAnimation)]) {
+        [self.refreshView performSelector:@selector(xn_startAnimation)];
+    }
 }
 
 - (void)stopRefreshAnimation {
-    [((XNRefreshView *)self.refreshView) stopAnimation];
+    if ([self.refreshView respondsToSelector:@selector(xn_stopAnimation)]) {
+        [self.refreshView performSelector:@selector(xn_stopAnimation)];
+    }
 }
 
 - (void)setProgressInRefreshView:(CGFloat)progress {
-    ((XNRefreshView *)self.refreshView).progress = progress;
+    if ([self.refreshView respondsToSelector:@selector(xn_setProgress:)]) {
+        NSNumber *value = [NSNumber numberWithFloat:progress];
+        [self.refreshView performSelector:@selector(xn_setProgress:) withObject:value];
+    }
 }
 @end
 

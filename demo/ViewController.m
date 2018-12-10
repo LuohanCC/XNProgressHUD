@@ -31,14 +31,6 @@
     self.title = @"XNProgressHUD";
     self.view.backgroundColor = [UIColor colorWithRed:228/255.0 green:230/255.0 blue:234/255.0 alpha:1];
     [self initSubviews];
-    
-    
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
-    [self.view addSubview:view];
-    // 设置显示的目标View并传入显示位置
-    [XNHUD setTargetView:view position:CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2)];
-    [XNHUD showLoadingWithTitle:@"指定显示在某个View上"];
-    
 }
 
 - (void)initSubviews {
@@ -48,15 +40,19 @@
     _refreshView.lineWidth = 4.f;
     _refreshView.label.font = [UIFont fontWithName:@"STHeitiTC-Light" size:14.f];
     _refreshView.style = XNRefreshViewStyleProgress;
-    //show HUD at window
+    //show HUD at the window.
     [[XNProgressHUD shared] setPosition:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height * 0.7)];
     [[XNProgressHUD shared] setTintColor:[UIColor colorWithRed:10/255.0 green:85/255.0 blue:145/255.0 alpha:0.7]];
-    //show HUD at vc
+    //show HUD at the vc.
     [self.hud setPosition:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height * 0.7)];
     [self.hud setTintColor:[UIColor colorWithRed:38/255.0 green:50/255.0 blue:56/255.0 alpha:0.8]];
     [self.hud setRefreshStyle:(XNRefreshViewStyleProgress)];
     [self.hud setMaskType:(XNProgressHUDMaskTypeBlack)  hexColor:0x00000044];
     [self.hud setMaskType:(XNProgressHUDMaskTypeCustom) hexColor:0xff000044];
+    // show HUD at the view.
+    UIView *targetView = self.view;
+    [XNHUD setTargetView:targetView position:CGPointMake(targetView.bounds.size.width/2, targetView.bounds.size.height/2)];
+    [XNHUD showLoadingWithTitle:@"指定显示在某个View上"];
 }
 
 // 正在下载

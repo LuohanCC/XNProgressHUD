@@ -92,13 +92,13 @@
 		285DF6B920E60386001CD2C0 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				285DF6BA20E60386001CD2C0 /* XNRefreshView.m */,
 				285DF6BB20E60386001CD2C0 /* UIViewController+XNProgressHUD.h */,
-				285DF6BC20E60386001CD2C0 /* XNProgressHUD.m */,
-				285DF6BD20E60386001CD2C0 /* XNRefreshViewProtocol.h */,
-				285DF6BE20E60386001CD2C0 /* XNRefreshView.h */,
 				285DF6BF20E60386001CD2C0 /* UIViewController+XNProgressHUD.m */,
 				285DF6C020E60386001CD2C0 /* XNProgressHUD.h */,
+				285DF6BC20E60386001CD2C0 /* XNProgressHUD.m */,
+				285DF6BE20E60386001CD2C0 /* XNRefreshView.h */,
+				285DF6BA20E60386001CD2C0 /* XNRefreshView.m */,
+				285DF6BD20E60386001CD2C0 /* XNRefreshViewProtocol.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -454,7 +454,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.luohan.XNProgressHUD0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luohancc.XNProgressHUD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -471,7 +471,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.luohan.XNProgressHUD0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luohancc.XNProgressHUD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
