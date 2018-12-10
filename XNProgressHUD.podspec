@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
     
   s.name         = "XNProgressHUD"
-  s.version      = "1.0.6"
+  s.version      = "1.0.7"
   s.summary      = "一款支持自定义状态视图的的HUD"
   s.description  =
   <<-DESC
