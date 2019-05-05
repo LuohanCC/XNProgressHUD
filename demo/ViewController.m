@@ -51,8 +51,12 @@
     [self.hud setMaskType:(XNProgressHUDMaskTypeCustom) hexColor:0xff000044];
     // show HUD at the view.
     UIView *targetView = self.view;
+    
+    XNHUD.padding = HUDPaddingMake(15, 8, 8, 8);
+    XNHUD.orientation = XNProgressHUDOrientationVertical;
     [XNHUD setTargetView:targetView position:CGPointMake(targetView.bounds.size.width/2, targetView.bounds.size.height/2)];
     [XNHUD showLoadingWithTitle:@"指定显示在某个View上"];
+    
 }
 
 // 正在下载

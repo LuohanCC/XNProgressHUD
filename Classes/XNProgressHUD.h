@@ -124,11 +124,17 @@ XNHUDMaskColorMake(unsigned int  clear, unsigned int black, unsigned int custom)
 
 @interface XNProgressHUD : NSObject <XNProgressHUDProtocol, XNProgressHUDMethod>
 
+@property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UIView *shadeContentView;
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong, readwrite) UIView *refreshView;
 @property (nonatomic, assign) XNProgressHUDOrientation orientation;
 @property (nonatomic, assign, readonly) XNProgressHUDStyle style;
 @property (nonatomic, assign) CGFloat borderWidth; //圆角
 @property (nonatomic, assign) NSTimeInterval duration; //动画时长
+@property (nonatomic, assign) HUDPadding padding; //contentViewd的间距
+@property (nonatomic, assign) CGFloat separatorWidth; //动画视图与标题的间距
 //最小延时消失时间（生效于：XNRefreshViewStyleInfoImage、XNRefreshViewStyleError、XNRefreshViewStyleSuccess）
 @property (nonatomic, assign) NSTimeInterval minimumDelayDismissDuration;
 //最大延时消失时间（生效于：XNRefreshViewStyleLoading、XNRefreshViewStyleProgress）

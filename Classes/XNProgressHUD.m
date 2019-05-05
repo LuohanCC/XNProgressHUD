@@ -11,14 +11,9 @@
 @interface XNProgressHUD() {
     UIView *_refreshView;
 }
-@property (nonatomic, strong) UIView *maskView;
-@property (nonatomic, strong) UIView *shadeContentView;
-@property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) NSTimer *displayTimer;
 @property (nonatomic, strong) NSTimer *dismissTimer;
 @property (nonatomic, assign) CGRect frame;
-@property (nonatomic, assign) HUDPadding padding;
 @property (nonatomic, assign) NSTimeInterval disposableDelayResponse; //延时相应
 @property (nonatomic, assign) NSTimeInterval disposableDelayDismiss; //延时消失时间
 @end
@@ -285,7 +280,8 @@
 
 - (void)initialize {
     _duration = 0.2f;
-    _padding = HUDPaddingMake(5, 5, 5, 6);
+    _separatorWidth = 5;
+    _padding = HUDPaddingMake(8, 8, 8, 8);
     _maskColor = XNHUDMaskColorMake(0x00000000, 0x00000033, 0x00000000);
     _refreshViewWidth = XNRefreshViewWidth;
     _tintColor = [UIColor colorWithRed:0/255.f green:0/255.f blue:0/255.f alpha:0.9f];
@@ -332,13 +328,13 @@
                 titleLabelFrame = CGRectMake(padding.left*2 + refreshWidth, (_frame.size.height-titleLabelSize.height)/2, titleLabelSize.width, titleLabelSize.height);
             }else{
                 refreshWidth *= 1.5;
-                height = padding.top*2 + refreshWidth + padding.bottom + titleLabelSize.height;
+                height = padding.top + refreshWidth + _separatorWidth + titleLabelSize.height + padding.bottom;
                 CGFloat widthWithHudView = padding.left + refreshWidth + padding.right;
                 CGFloat widthWithTitleView  = padding.left + titleLabelSize.width + padding.right;
                 _frame.size = CGSizeMake(MAX(widthWithHudView, widthWithTitleView), height);
                 _frame.origin = CGPointMake(_position.x-_frame.size.width/2, _position.y-_frame.size.height/2);
                 refreshViewFrame = CGRectMake((_frame.size.width-refreshWidth)/2, padding.top, refreshWidth, refreshWidth);
-                titleLabelFrame = CGRectMake(padding.left, padding.top*2+refreshWidth, titleLabelSize.width, titleLabelSize.height);
+                titleLabelFrame = CGRectMake(padding.left, padding.top+refreshWidth+_separatorWidth, titleLabelSize.width, titleLabelSize.height);
             }
         }
             break;
