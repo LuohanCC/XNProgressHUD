@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.source   = { :git => "https://github.com/LuohanCC/XNProgressHUD.git", :tag => "#{s.version}" }
   
   s.ios.deployment_target = "7.0"
-  s.source_files  = "SVProgressHUD/**/*.{h,m}"
+  s.source_files  = "Classes/**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
   s.framework     = "UIKit"
   s.requires_arc  = true
