@@ -124,31 +124,35 @@ XNHUDMaskColorMake(unsigned int  clear, unsigned int black, unsigned int custom)
 
 @interface XNProgressHUD : NSObject <XNProgressHUDProtocol, XNProgressHUDMethod>
 
-@property (nonatomic, strong) UIView *maskView;
-@property (nonatomic, strong) UIView *shadeContentView;
-@property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong, readwrite) UIView *refreshView;
-@property (nonatomic, assign) XNProgressHUDOrientation orientation;
-@property (nonatomic, assign, readonly) XNProgressHUDStyle style;
-@property (nonatomic, assign) CGFloat borderWidth; //圆角
-@property (nonatomic, assign) NSTimeInterval duration; //动画时长
-@property (nonatomic, assign) HUDPadding padding; //contentViewd的间距
+@property (nonatomic, strong) UIView *maskView; //遮罩
+@property (nonatomic, strong) UIView *shadeContentView; //阴影视图
+@property (nonatomic, assign) CGColorRef shadowColor; //阴影颜色
+@property (nonatomic, strong) UIView *contentView; //标题和动画视图的父视图
+@property (nonatomic, strong) UILabel *titleLabel; //标题
+@property (nonatomic, strong, readwrite) UIView *refreshView; //动画视图
+@property (nonatomic, assign) CGFloat refreshViewWidth; //动画视图的尺寸
+@property (nonatomic, assign) XNRefreshViewStyle refreshStyle; //动画视图的样式
 @property (nonatomic, assign) CGFloat separatorWidth; //动画视图与标题的间距
 //最小延时消失时间（生效于：XNRefreshViewStyleInfoImage、XNRefreshViewStyleError、XNRefreshViewStyleSuccess）
 @property (nonatomic, assign) NSTimeInterval minimumDelayDismissDuration;
 //最大延时消失时间（生效于：XNRefreshViewStyleLoading、XNRefreshViewStyleProgress）
 @property (nonatomic, assign) NSTimeInterval maximumDelayDismissDuration;
-@property (nonatomic, assign) CGPoint position; //显示位置
-@property (nonatomic, assign) CGFloat refreshViewWidth; //转圈视图的尺寸
-@property (nonatomic, assign) XNRefreshViewStyle refreshStyle; //样式
-@property (nonatomic, assign) CGColorRef shadowColor; //阴影颜色
-@property (nonatomic, assign) CGFloat progress;
-@property (nonatomic, assign) BOOL showing; 
+@property (nonatomic, assign) BOOL showing; //显示状态
 @property (nonatomic, strong) NSString *title; //文字
-@property (nonatomic, strong) UIColor *tintColor; //主色色调
-@property (nonatomic, weak)   UIViewController *viewController; //是否显示在ViewController上，为空时显示在Window上
-@property (nonatomic, readonly, weak) UIView *targetView; //指定显示在某个View上
+@property (nonatomic, assign) CGPoint position; //显示位置
+@property (nonatomic, assign) HUDPadding padding; //内边距
+@property (nonatomic, strong) UIColor *tintColor; //主色调
+@property (nonatomic, assign) CGFloat borderWidth; //圆角
+@property (nonatomic, assign) NSTimeInterval duration; //动画时长
+@property (nonatomic, assign, readonly) XNProgressHUDStyle style; //样式
+@property (nonatomic, assign) XNProgressHUDOrientation orientation; //方向,默认为水平b布局
+
+/**
+ * 默认为空, 显示在KeyWindow上, 若不为空，有两种情况：
+ * 1.targetView=用户自定义的UIWindow，此时maskType不使能，需要锁定点击事件时需设置userInteractionEnabled属性
+ * 2.targetView=UIView, 使用方法与默认状态下一样
+ */
+@property (nonatomic, weak)   UIView *targetView; //指定显示在某个View上
 //MaskView
 @property (nonatomic, assign, readonly) XNProgressHUDMaskType maskType;
 @property (nonatomic, assign) struct XNHUDMaskColor maskColor;
@@ -169,11 +173,6 @@ XNHUDMaskColorMake(unsigned int  clear, unsigned int black, unsigned int custom)
  */
 - (void)setMaskType:(XNProgressHUDMaskType)maskType;
 - (void)setMaskType:(XNProgressHUDMaskType)maskType hexColor:(uint32_t)color;
-
-/**
- * 设置目标显示视图，并传入HUD显示位置
- */
-- (void)setTargetView:(UIView *)targetView position:(CGPoint)position;
 
 /**
  * 是否正在显示

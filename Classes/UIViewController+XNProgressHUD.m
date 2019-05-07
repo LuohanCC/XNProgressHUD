@@ -20,7 +20,7 @@ static char VCXNProgressHUD;
     XNProgressHUD *hudView = objc_getAssociatedObject(self, &VCXNProgressHUD);
     if(!hudView) {
         hudView = [[XNProgressHUD alloc] init];
-        hudView.viewController = self;
+        hudView.targetView = self.view;
         [self setHud:hudView];
     }
     return hudView;

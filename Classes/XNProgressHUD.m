@@ -16,6 +16,7 @@
 @property (nonatomic, assign) CGRect frame;
 @property (nonatomic, assign) NSTimeInterval disposableDelayResponse; //延时相应
 @property (nonatomic, assign) NSTimeInterval disposableDelayDismiss; //延时消失时间
+@property (nonatomic, assign) CGFloat progress; //进度
 @end
 
 @implementation XNProgressHUD
@@ -32,7 +33,6 @@
         view = nil;
     }
 }
-
 
 - (void)stopTimerAndSetItNil:(NSTimer *)timer {
     if(timer) {
@@ -174,7 +174,6 @@
     return _contentView;
 }
 
-
 - (UILabel *)titleLabel {
     if(!_titleLabel) {
         _titleLabel = [UILabel new];
@@ -188,31 +187,16 @@
 }
 
 @synthesize targetView = _targetView;
-- (UIView *)targetView {
-    if(_targetView) {
-        return _targetView;
-    }else{
-        if(_viewController) {
-            return _viewController.view;
-        }else{
-            return [UIApplication sharedApplication].delegate.window;
-        }
-    }
-}
-
 - (void)setTargetView:(UIView *)targetView {
     _targetView = targetView;
-    _viewController = nil;
 }
-
-- (void)setTargetView:(UIView *)targetView position:(CGPoint)position {
-    self.targetView = targetView;
-    self.position = position;
-}
-
-- (void)setViewController:(UIViewController *)viewController {
-    _viewController = viewController;
-    _targetView = nil;
+- (UIView *)targetView {
+    UIView *view = nil;
+    if (_targetView)
+        view = _targetView;
+    else
+        view =  [UIApplication sharedApplication].keyWindow;
+    return view;
 }
 
 - (NSTimeInterval)minimumDelayDismissDuration {
@@ -249,6 +233,10 @@
 
 - (BOOL)isMaskEnable {
     return _maskType != XNProgressHUDMaskTypeNone;
+}
+
+- (BOOL)isWindowAndIsNotKeyWindow:(UIView *)view {
+    return view && [view isKindOfClass:UIWindow.class] && ![view isEqual:[UIApplication sharedApplication].keyWindow];
 }
 
 - (CGFloat)maximumWidth {
@@ -296,59 +284,43 @@
 - (void)update {
     //updateFrame
     HUDPadding padding = _padding;
-    CGFloat refreshWidth = _refreshViewWidth;
+    CGFloat refreshWidth = 0, separatorWidth = 0;
     CGRect titleLabelFrame = CGRectZero, refreshViewFrame = CGRectZero;
-    switch (self.style) {
-        case XNProgressHUDStyleLoading: { //RefreshView
-            refreshWidth *= 1.5;
-            padding = HUDPaddingMake(padding.left*1.5, padding.left*1.5, padding.left*1.5, padding.left*1.5);
-            _frame = CGRectMake(0, 0, refreshWidth + padding.left + padding.right, refreshWidth + padding.top + padding.bottom);
-            _frame.origin = CGPointMake(_position.x-_frame.size.width/2, _position.y-_frame.size.height/2);
-            refreshViewFrame = CGRectMake(padding.left, padding.top, refreshWidth, refreshWidth);
-        }
-            break;
-        case XNProgressHUDStyleTitle: { //Title
-            CGFloat maxWidth = self.maximumWidth;
-            CGSize  titleLabelSize = [self.titleLabel sizeThatFits:CGSizeMake(maxWidth - padding.left + padding.right, MAXFLOAT)];
-            _frame = CGRectMake(0, 0, padding.left + titleLabelSize.width + padding.right, padding.top + titleLabelSize.height + padding.bottom);
-            _frame.origin = CGPointMake(_position.x-_frame.size.width/2, _position.y-_frame.size.height/2);
-            titleLabelFrame = CGRectMake(padding.left, (_frame.size.height-titleLabelSize.height)/2, titleLabelSize.width, titleLabelSize.height);
-        }
-            break;
-        case XNProgressHUDStyleLoadingAndTitle: { //RefreshView + Title
-            CGSize  titleLabelSize = [self.titleLabel sizeThatFits:CGSizeMake(HUDScreenSize.width * 0.7f, MAXFLOAT)];
-            CGFloat width = 0, height = 0;
-            if(self.orientation == XNProgressHUDOrientationHorizontal) {
-                width = padding.left*2 + refreshWidth + padding.right + titleLabelSize.width;
-                CGFloat heightWithHudView = padding.top + refreshWidth + padding.bottom;
-                CGFloat heightWithTitleView  = padding.top + titleLabelSize.height + padding.bottom;
-                _frame.size = CGSizeMake(width, MAX(heightWithHudView, heightWithTitleView));
-                _frame.origin = CGPointMake(_position.x-_frame.size.width/2, _position.y-_frame.size.height/2);
-                refreshViewFrame = CGRectMake(padding.left, (_frame.size.height-refreshWidth)/2, refreshWidth, refreshWidth);
-                titleLabelFrame = CGRectMake(padding.left*2 + refreshWidth, (_frame.size.height-titleLabelSize.height)/2, titleLabelSize.width, titleLabelSize.height);
-            }else{
-                refreshWidth *= 1.5;
-                height = padding.top + refreshWidth + _separatorWidth + titleLabelSize.height + padding.bottom;
-                CGFloat widthWithHudView = padding.left + refreshWidth + padding.right;
-                CGFloat widthWithTitleView  = padding.left + titleLabelSize.width + padding.right;
-                _frame.size = CGSizeMake(MAX(widthWithHudView, widthWithTitleView), height);
-                _frame.origin = CGPointMake(_position.x-_frame.size.width/2, _position.y-_frame.size.height/2);
-                refreshViewFrame = CGRectMake((_frame.size.width-refreshWidth)/2, padding.top, refreshWidth, refreshWidth);
-                titleLabelFrame = CGRectMake(padding.left, padding.top+refreshWidth+_separatorWidth, titleLabelSize.width, titleLabelSize.height);
-            }
-        }
-            break;
-        default:
-            break;
+    CGSize titleLabelSize = CGSizeZero;
+    if (self.title && self.title.length > 0)
+        titleLabelSize = [self.titleLabel sizeThatFits:CGSizeMake(HUDScreenSize.width * 0.7f, MAXFLOAT)];
+    if (self.style == XNProgressHUDStyleLoading || self.style == XNProgressHUDStyleLoadingAndTitle) {
+        refreshWidth = _refreshViewWidth;
+        if (self.style == XNProgressHUDStyleLoadingAndTitle)
+            separatorWidth = _separatorWidth;
     }
-    if(! CGRectEqualToRect(titleLabelFrame, self.titleLabel.frame)) {
-        self.titleLabel.frame = titleLabelFrame;
+    if (refreshWidth > 0 && (self.style == XNProgressHUDStyleLoading || self.orientation == XNProgressHUDOrientationVertical)) {
+        if (refreshWidth < XNRefreshViewWidth * 1.5) {
+            refreshWidth = XNRefreshViewWidth * 1.5;
+        }
     }
-    if(! CGRectEqualToRect(refreshViewFrame, self.refreshView.frame)) {
-        self.refreshView.frame = refreshViewFrame;
+    CGFloat width = 0, height = 0;
+    if (self.orientation == XNProgressHUDOrientationHorizontal) {
+        width = padding.left + padding.right + separatorWidth + refreshWidth + titleLabelSize.width;
+        height = MAX(padding.top + padding.bottom + refreshWidth, padding.top + padding.bottom + titleLabelSize.height);
+        _frame.size = CGSizeMake(width, height);
+        _frame.origin = CGPointMake(_position.x-_frame.size.width/2, _position.y-_frame.size.height/2);
+        refreshViewFrame = CGRectMake(padding.left, (_frame.size.height-refreshWidth)/2, refreshWidth, refreshWidth);
+        titleLabelFrame = CGRectMake(padding.left + refreshWidth + separatorWidth, (_frame.size.height-titleLabelSize.height)/2, titleLabelSize.width, titleLabelSize.height);
+    } else {
+        width = MAX(padding.left + padding.right + refreshWidth, padding.left + padding.right + titleLabelSize.width);
+        height = padding.top + padding.bottom + separatorWidth + refreshWidth + titleLabelSize.height;
+        _frame.size = CGSizeMake(width, height);
+        _frame.origin = CGPointMake(_position.x-_frame.size.width/2, _position.y-_frame.size.height/2);
+        refreshViewFrame = CGRectMake((_frame.size.width-refreshWidth)/2, padding.top, refreshWidth, refreshWidth);
+        titleLabelFrame = CGRectMake((_frame.size.width-titleLabelSize.width)/2, padding.top + separatorWidth + refreshWidth, titleLabelSize.width, titleLabelSize.height);
     }
     self.shadeContentView.frame = self.frame;
     self.contentView.frame = self.shadeContentView.bounds;
+    if(! CGRectEqualToRect(titleLabelFrame, CGRectZero))
+        self.titleLabel.frame = titleLabelFrame;
+    if(! CGRectEqualToRect(refreshViewFrame, CGRectZero))
+        self.refreshView.frame = refreshViewFrame;
 }
 
 #pragma mark - show hud on window
@@ -494,20 +466,22 @@
 
 - (void)didDisplayOnMainQueue {
     // 标题
-    self.titleLabel.text = self.title;
     // 样式,设置HUD的显示内容
     switch (_style) {
         case XNProgressHUDStyleTitle:{ //标题
+            self.titleLabel.text = self.title;
             [self removeFromSuperview:self.refreshView];
             [self addSubviewIfNotContain:self.titleLabel superView:self.contentView];
         }
             break;
         case XNProgressHUDStyleLoading:{ //加载中
+            self.titleLabel.text = self.title = nil;
             [self removeFromSuperview:self.titleLabel];
             [self addSubviewIfNotContain:self.refreshView superView:self.contentView];
         }
             break;
         case XNProgressHUDStyleLoadingAndTitle:{//标题+加载中
+            self.titleLabel.text = self.title;
             [self addSubviewIfNotContain:self.refreshView superView:self.contentView];
             [self addSubviewIfNotContain:self.titleLabel  superView:self.contentView];
         }
@@ -520,13 +494,14 @@
     if(self.refreshStyle == XNRefreshViewStyleProgress) {
         [self setProgressInRefreshView:self.progress];
     }
+    __block UIView *targetView = self.targetView;
     // maskView
     if(self.isMaskEnable) {
         self.maskView.backgroundColor = [self maskColorWithMaskType:self.maskType];
-        [self addSubviewIfNotContain:self.maskView superView:self.targetView];
+        [self addSubviewIfNotContain:self.maskView superView:targetView];
     }
     // contentView
-    [self addSubviewIfNotContain:self.shadeContentView superView:self.targetView];
+    [self addSubviewIfNotContain:self.shadeContentView superView:targetView];
     // 如果没有显示，需要先调整位置，防止视图跳动
     BOOL showing = self.showing;
     if(!showing) {
@@ -536,6 +511,9 @@
     }
     self.showing = YES;
     [self startRefreshAnimation];
+    if ([self isWindowAndIsNotKeyWindow:(targetView)]) {
+        targetView.hidden = NO;
+    }
     HUDWeakSelf;
     [UIView animateWithDuration:self.duration animations:^{
         // 如果正在显示，通过动画过度Frame
@@ -582,18 +560,20 @@
     self.showing = NO;
     if(_hudDismissBlock) _hudDismissBlock();
     [self stopRefreshAnimation];
+    __block UIView *targetView = self.targetView;
     HUDWeakSelf;
     [UIView animateWithDuration:self.duration animations:^{
-        if(weakSelf.isMaskEnable && weakSelf.maskView) {
+        if(weakSelf.isMaskEnable && weakSelf.maskView)
             weakSelf.maskView.alpha = 0.f;
-        }
         weakSelf.shadeContentView.alpha = 0.f;
     } completion:^(BOOL finished) {
-        [self removeFromSuperview:self.shadeContentView];
-        [self removeFromSuperview:self.maskView];
-        if(weakSelf.hudDismissBlock) {
-            [self removeMaskTapGestureEvent];
+        if ([self isWindowAndIsNotKeyWindow:(targetView)]) {
+            targetView.hidden = YES;
         }
+        [weakSelf removeFromSuperview:weakSelf.shadeContentView];
+        [weakSelf removeFromSuperview:weakSelf.maskView];
+        if(weakSelf.hudDismissBlock)
+            [weakSelf removeMaskTapGestureEvent];
         weakSelf.disposableDelayDismiss = 0.f;
         weakSelf.maskType = XNProgressHUDMaskTypeNone;
     }];

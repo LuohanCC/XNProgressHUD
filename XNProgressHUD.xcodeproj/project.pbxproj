@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2842D5B32281D7910023B54C /* XNProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2842D5AA2281D7910023B54C /* XNProgressHUD.podspec */; };
+		2842D5B42281D7910023B54C /* XNProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2842D5AC2281D7910023B54C /* XNProgressHUD.podspec */; };
+		2842D5B52281D7910023B54C /* XNProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2842D5AE2281D7910023B54C /* XNProgressHUD.podspec */; };
+		2842D5B62281D7910023B54C /* XNProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2842D5B02281D7910023B54C /* XNProgressHUD.podspec */; };
+		2842D5B72281D7910023B54C /* XNProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2842D5B22281D7910023B54C /* XNProgressHUD.podspec */; };
+		2842D5BA2281D7BC0023B54C /* XNProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2842D5B92281D7BC0023B54C /* XNProgressHUD.podspec */; };
 		285DF6C120E60386001CD2C0 /* XNRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 285DF6BA20E60386001CD2C0 /* XNRefreshView.m */; };
 		285DF6C220E60386001CD2C0 /* XNProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 285DF6BC20E60386001CD2C0 /* XNProgressHUD.m */; };
 		285DF6C320E60386001CD2C0 /* UIViewController+XNProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 285DF6BF20E60386001CD2C0 /* UIViewController+XNProgressHUD.m */; };
@@ -40,6 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2842D5AA2281D7910023B54C /* XNProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XNProgressHUD.podspec; sourceTree = "<group>"; };
+		2842D5AC2281D7910023B54C /* XNProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XNProgressHUD.podspec; sourceTree = "<group>"; };
+		2842D5AE2281D7910023B54C /* XNProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XNProgressHUD.podspec; sourceTree = "<group>"; };
+		2842D5B02281D7910023B54C /* XNProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XNProgressHUD.podspec; sourceTree = "<group>"; };
+		2842D5B22281D7910023B54C /* XNProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XNProgressHUD.podspec; sourceTree = "<group>"; };
+		2842D5B92281D7BC0023B54C /* XNProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XNProgressHUD.podspec; sourceTree = "<group>"; };
 		285DF6BA20E60386001CD2C0 /* XNRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNRefreshView.m; sourceTree = "<group>"; };
 		285DF6BB20E60386001CD2C0 /* UIViewController+XNProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XNProgressHUD.h"; sourceTree = "<group>"; };
 		285DF6BC20E60386001CD2C0 /* XNProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNProgressHUD.m; sourceTree = "<group>"; };
@@ -89,6 +101,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2842D5A82281D7910023B54C /* XNProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				2842D5B82281D7BC0023B54C /* 1.0.9 */,
+				2842D5A92281D7910023B54C /* 1.0.7 */,
+				2842D5AB2281D7910023B54C /* 1.0.8 */,
+				2842D5AD2281D7910023B54C /* 1.0.4 */,
+				2842D5AF2281D7910023B54C /* 1.0.3 */,
+				2842D5B12281D7910023B54C /* 1.0.5 */,
+			);
+			path = XNProgressHUD;
+			sourceTree = "<group>";
+		};
+		2842D5A92281D7910023B54C /* 1.0.7 */ = {
+			isa = PBXGroup;
+			children = (
+				2842D5AA2281D7910023B54C /* XNProgressHUD.podspec */,
+			);
+			path = 1.0.7;
+			sourceTree = "<group>";
+		};
+		2842D5AB2281D7910023B54C /* 1.0.8 */ = {
+			isa = PBXGroup;
+			children = (
+				2842D5AC2281D7910023B54C /* XNProgressHUD.podspec */,
+			);
+			path = 1.0.8;
+			sourceTree = "<group>";
+		};
+		2842D5AD2281D7910023B54C /* 1.0.4 */ = {
+			isa = PBXGroup;
+			children = (
+				2842D5AE2281D7910023B54C /* XNProgressHUD.podspec */,
+			);
+			path = 1.0.4;
+			sourceTree = "<group>";
+		};
+		2842D5AF2281D7910023B54C /* 1.0.3 */ = {
+			isa = PBXGroup;
+			children = (
+				2842D5B02281D7910023B54C /* XNProgressHUD.podspec */,
+			);
+			path = 1.0.3;
+			sourceTree = "<group>";
+		};
+		2842D5B12281D7910023B54C /* 1.0.5 */ = {
+			isa = PBXGroup;
+			children = (
+				2842D5B22281D7910023B54C /* XNProgressHUD.podspec */,
+			);
+			path = 1.0.5;
+			sourceTree = "<group>";
+		};
+		2842D5B82281D7BC0023B54C /* 1.0.9 */ = {
+			isa = PBXGroup;
+			children = (
+				2842D5B92281D7BC0023B54C /* XNProgressHUD.podspec */,
+			);
+			path = 1.0.9;
+			sourceTree = "<group>";
+		};
 		285DF6B920E60386001CD2C0 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +179,7 @@
 		28A0B350207C9DC900D03037 = {
 			isa = PBXGroup;
 			children = (
+				2842D5A82281D7910023B54C /* XNProgressHUD */,
 				285DF6B920E60386001CD2C0 /* Classes */,
 				28A0B392207CA6B700D03037 /* demo */,
 				28A0B38E207C9E9400D03037 /* README.md */,
@@ -247,8 +321,14 @@
 				28A0B391207C9E9400D03037 /* XNProgressHUD.podspec in Resources */,
 				28A0B3A1207CA6B700D03037 /* Main.storyboard in Resources */,
 				28A0B3A4207CA6B700D03037 /* Info.plist in Resources */,
+				2842D5BA2281D7BC0023B54C /* XNProgressHUD.podspec in Resources */,
 				28DFD3F42080B24F00AE575B /* LICENSE in Resources */,
+				2842D5B62281D7910023B54C /* XNProgressHUD.podspec in Resources */,
 				28A0B3A0207CA6B700D03037 /* LaunchScreen.storyboard in Resources */,
+				2842D5B52281D7910023B54C /* XNProgressHUD.podspec in Resources */,
+				2842D5B32281D7910023B54C /* XNProgressHUD.podspec in Resources */,
+				2842D5B42281D7910023B54C /* XNProgressHUD.podspec in Resources */,
+				2842D5B72281D7910023B54C /* XNProgressHUD.podspec in Resources */,
 				28A0B39E207CA6B700D03037 /* Assets.xcassets in Resources */,
 				28A0B390207C9E9400D03037 /* README.md in Resources */,
 			);
