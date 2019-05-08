@@ -16,7 +16,6 @@ static NSString *kMMRingRotationAnimationKey = @"materialdesignspinner.rotation"
 @property (nonatomic, assign, getter=isAnimating) BOOL animating;
 @property (nonatomic, strong) UIImageView *imageView;
 
-
 @property (nonatomic, strong) CAShapeLayer *infoLayer;
 @property (nonatomic, strong) CAShapeLayer *errorLayer01;
 @property (nonatomic, strong) CAShapeLayer *errorLayer02;
@@ -662,13 +661,13 @@ static NSString *kMMRingRotationAnimationKey = @"materialdesignspinner.rotation"
             break;
         case XNRefreshViewStyleError:{
             if(! _errorImage) {
-                [self stopErrorAnimation];
+                //[self stopErrorAnimation];
             }
         }
             break;
         case XNRefreshViewStyleSuccess:{
             if(! _successImage) {
-                [self stopSuccessAnimation];
+                //[self stopSuccessAnimation];
             }
         }
             break;
