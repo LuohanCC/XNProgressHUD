@@ -26,7 +26,7 @@
 - (CATextLayer *)createTextLayer {
     CATextLayer *layer =  [CATextLayer layer];
     layer.alignmentMode = kCAAlignmentCenter;
-    layer.font = (__bridge CFTypeRef _Nullable)(@"Cochin");
+    layer.font = (__bridge CFTypeRef _Nullable)(@"AvenirNextCondensed-Medium");
     layer.fontSize = 11.f;
     layer.backgroundColor = [UIColor clearColor].CGColor;
     layer.contentsScale = 2;
@@ -38,45 +38,42 @@
     _circular = [CAShapeLayer layer];
     _progressLayer = [CAShapeLayer layer];
     _textLayer = [self createTextLayer];
+    [self addSublayer:_circular];
     [self addSublayer:_progressLayer];
     [self addSublayer:_textLayer];
     return self;
 }
 
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    [self setNeedsDisplay];
+}
+
 - (void)setProgress:(CGFloat)progress {
     _progress = progress;
     _textLayer.string = [NSString stringWithFormat:@"%.f%%", progress * 100];
-    [self setNeedsDisplay];
+    _progressLayer.strokeEnd = progress;
 }
 
 - (void)drawInContext:(CGContextRef)ctx {
     [super drawInContext:ctx];
     UIGraphicsPushContext(ctx);
 
+    CGPoint center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
     float fontHeight = self.bounds.size.height * 0.5;
     _textLayer.frame = CGRectMake(0, (self.bounds.size.height-fontHeight)/2, self.bounds.size.width, fontHeight);
     _textLayer.foregroundColor = xn_strokeColor;
-    _textLayer.fontSize = self.bounds.size.width * 0.4231f;
+    _textLayer.fontSize = self.bounds.size.width * 0.4f;
     
-    CGPoint center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
-    float radius = self.bounds.size.width/2.0, from = 0.f, to = M_PI * 2;
+    float radius = self.bounds.size.width/2.0, from = -M_PI_2, to = -M_PI_2 + M_PI * 2.f;
     UIBezierPath *circularPath = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:from endAngle:to clockwise:true];
-    _circular.path = circularPath.CGPath;
-    _circular.bounds = circularPath.bounds;
-    _circular.position = center;
-    _circular.fillColor = [UIColor clearColor].CGColor;
-    
-    radius = self.frame.size.width/2.0;
-    from = -M_PI_2;
-    to = from + _progress * (M_PI * 2);
-    UIBezierPath *path2 = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:from endAngle:to clockwise:true];
-    _progressLayer.path = path2.CGPath;
-    _progressLayer.path = path2.CGPath;
-    _progressLayer.bounds = path2.bounds;
-    _progressLayer.position = center;
-    _progressLayer.fillColor = [UIColor clearColor].CGColor;
-    _progressLayer.lineWidth = _circular.lineWidth = xn_lineWidth;
-    _progressLayer.strokeColor = _circular.strokeColor = xn_strokeColor;
+    _circular.fillColor = _progressLayer.fillColor = [UIColor clearColor].CGColor;
+    _circular.path = _progressLayer.path = circularPath.CGPath;
+    _circular.bounds = _progressLayer.bounds =  circularPath.bounds;
+    _circular.position = _progressLayer.position = center;
+    _circular.lineWidth = _progressLayer.lineWidth = xn_lineWidth;
+    _circular.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.3].CGColor;
+    _progressLayer.strokeColor = xn_strokeColor;
     
     UIGraphicsPopContext();
 }
@@ -95,9 +92,6 @@
     if (!xn_strokeColor ) {
         xn_strokeColor = [UIColor blackColor].CGColor;
     }
-    
-    // drawing
-    [self setNeedsDisplay];
 }
 
 - (void)play {

@@ -1,11 +1,11 @@
 # XNProgressHUD
 
 一个丝滑、灵活的HUD
-#
-![加载中](http://www.wailian.work/images/2018/08/03/animation01.gif)
-![操作成功/操作失败](http://www.wailian.work/images/2018/08/03/animation02.gif)
-![进度显示](http://www.wailian.work/images/2018/08/03/animation03.gif)
-![垂直方向](http://www.wailian.work/images/2018/08/03/animation04.gif)
+
+![hud-01.gif](http://www.wailian.work/images/2019/07/29/hud-01.gif)
+![hud-02.gif](http://www.wailian.work/images/2019/07/29/hud-02.gif)
+![hud-03.gif](http://www.wailian.work/images/2019/07/29/hud-03.gif)
+![hud-04.gif](http://www.wailian.work/images/2019/07/29/hud-04.gif)
 #
 一款支持各种自定义的轻量级HUD，支持垂直、水平两种样式。XNProgressHUD非常灵活，所见的部分都可根据自己的要求进行自定义，包括自义动画效果或图片，只需要实现相关协议方法。
 
@@ -67,16 +67,18 @@ UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
 [XNHUD setDisposableDelayResponse:1.0f delayDismiss:2.0f];
  ```
 
- 设置排列方向，默认为水平方向
+ 设置排列方向，默认为垂直方向
  ```Objective-C
 [XNHUD setOrientation:XNProgressHUDOrientationHorizontal];
  ```
 
  ## 自定义XNProgressHUD
- 如果需要自定义加载视图的显示内容和动画样式，请重写XNAnimationView并实现XNAnimaionViewProtocol中的协议方法即可，具体如下
- * 自定义XNAnimationView并实现XNAnimaionViewProtocol中的协议方法；
- * 继承XNProgressHUD并实现XNProgressHUDMethod中的协议方法。
-  
+ 你可以自定义某一个状态下的动画，步骤非常简单，喜欢XNAnimationView中相应的Layer就行了，如果你想替换所有状态下的动画，请重写XNAnimationView。
+
+
+
+这里就介绍这么多，其他功能自行探索。
+
 
 
 

@@ -17,6 +17,7 @@
 @property (nonatomic, assign) NSTimeInterval disposableDelayResponse; //延时相应
 @property (nonatomic, assign) NSTimeInterval disposableDelayDismiss; //延时消失时间
 @property (nonatomic, assign) CGFloat progress; //进度
+@property (nonatomic, assign) BOOL needTransitive; 
 @end
 
 @implementation XNProgressHUD
@@ -214,7 +215,13 @@
 }
 
 - (void)setRefreshStyle:(XNAnimationViewStyle)refreshStyle {
+    _needTransitive = _refreshStyle == refreshStyle;
     _refreshStyle = refreshStyle;
+}
+
+- (void)setOrientation:(XNProgressHUDOrientation)orientation {
+    _needTransitive = _orientation == orientation;
+    _orientation = orientation;
 }
 
 - (void)setTitle:(NSString *)title {
@@ -508,12 +515,12 @@
     // 如果没有显示，需要先调整位置，防止视图跳动
     __block BOOL showing = self.showing;
     self.showing = YES;
-    if(!showing) {
+    if(showing) {
+        self.animationView.alpha = 1.f;
+    } else {
         self.maskView.alpha = 0.f;
         self.shadeContentView.alpha = 0.f;
         [self update];
-    } else {
-        self.animationView.alpha = 0.f;
     }
     [self startAnimation];
     if ([self isWindowAndIsNotKeyWindow:(targetView)]) {
