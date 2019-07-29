@@ -55,8 +55,8 @@ UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
   ```
 
  ## 属性和方法说明
- 显示时长minimumDelayDismissDuration作用于非加载样式的视图：***XNRefreshViewStyleInfoImage、XNRefreshViewStyleError、XNRefreshViewStyleSuccess***；
- 显示时长maximumDelayDismissDuration作用与加载样式的视图：***XNRefreshViewStyleLoading、XNRefreshViewStyleProgress***。
+ 显示时长minimumDelayDismissDuration作用于非加载样式的视图：***XNAnimationViewStyleInfoImage、XNAnimationViewStyleError、XNAnimationViewStyleSuccess***；
+ 显示时长maximumDelayDismissDuration作用与加载样式的视图：***XNAnimationViewStyleLoading、XNAnimationViewStyleProgress***。
  ```Objective-C
 @property (nonatomic, assign) NSTimeInterval minimumDelayDismissDuration; //default:1.5f
 @property (nonatomic, assign) NSTimeInterval maximumDelayDismissDuration; //default:20.f
@@ -73,8 +73,8 @@ UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
  ```
 
  ## 自定义XNProgressHUD
- 如果需要自定义加载视图的显示内容和动画样式，请重写XNRefreshView并实现XNRefreshViewProtocol中的协议方法即可，具体如下
- * 自定义XNRefreshView并实现XNRefreshViewProtocol中的协议方法；
+ 如果需要自定义加载视图的显示内容和动画样式，请重写XNAnimationView并实现XNAnimaionViewProtocol中的协议方法即可，具体如下
+ * 自定义XNAnimationView并实现XNAnimaionViewProtocol中的协议方法；
  * 继承XNProgressHUD并实现XNProgressHUDMethod中的协议方法。
   
 

@@ -13,7 +13,6 @@
 		2842D5B62281D7910023B54C /* XNProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2842D5B02281D7910023B54C /* XNProgressHUD.podspec */; };
 		2842D5B72281D7910023B54C /* XNProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2842D5B22281D7910023B54C /* XNProgressHUD.podspec */; };
 		2842D5BA2281D7BC0023B54C /* XNProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2842D5B92281D7BC0023B54C /* XNProgressHUD.podspec */; };
-		285DF6C120E60386001CD2C0 /* XNRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 285DF6BA20E60386001CD2C0 /* XNRefreshView.m */; };
 		285DF6C220E60386001CD2C0 /* XNProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 285DF6BC20E60386001CD2C0 /* XNProgressHUD.m */; };
 		285DF6C320E60386001CD2C0 /* UIViewController+XNProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 285DF6BF20E60386001CD2C0 /* UIViewController+XNProgressHUD.m */; };
 		28A0B390207C9E9400D03037 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 28A0B38E207C9E9400D03037 /* README.md */; };
@@ -26,6 +25,14 @@
 		28A0B3A3207CA6B700D03037 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A0B39B207CA6B700D03037 /* AppDelegate.m */; };
 		28A0B3A4207CA6B700D03037 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28A0B39C207CA6B700D03037 /* Info.plist */; };
 		28DFD3F42080B24F00AE575B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 28DFD3F32080B24E00AE575B /* LICENSE */; };
+		8EAECBC2228281C100919658 /* XNProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8EAECBC1228281C100919658 /* XNProgressHUD.podspec */; };
+		9A7E97DF22E2B99C00E47064 /* XNAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E97DE22E2B99C00E47064 /* XNAnimationView.m */; };
+		9A7E97E622E2ECF300E47064 /* XNHUDErrorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E97E522E2ECF300E47064 /* XNHUDErrorLayer.m */; };
+		9A7E97EC22E2ED5C00E47064 /* XNHUDProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E97EB22E2ED5C00E47064 /* XNHUDProgressLayer.m */; };
+		9A7E97EF22E2ED7100E47064 /* XNHUDSuccessLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E97EE22E2ED7100E47064 /* XNHUDSuccessLayer.m */; };
+		9A7E97F222E2ED8900E47064 /* XNHUDLoadingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E97F122E2ED8900E47064 /* XNHUDLoadingLayer.m */; };
+		9A7E97F622E556B900E47064 /* XNHUDInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E97F522E556B900E47064 /* XNHUDInfoLayer.m */; };
+		9AEC3AEA22EE91B200EF8B97 /* CustomHUDLoadingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEC3AE922EE91B200EF8B97 /* CustomHUDLoadingLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,11 +59,9 @@
 		2842D5B02281D7910023B54C /* XNProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XNProgressHUD.podspec; sourceTree = "<group>"; };
 		2842D5B22281D7910023B54C /* XNProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XNProgressHUD.podspec; sourceTree = "<group>"; };
 		2842D5B92281D7BC0023B54C /* XNProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XNProgressHUD.podspec; sourceTree = "<group>"; };
-		285DF6BA20E60386001CD2C0 /* XNRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNRefreshView.m; sourceTree = "<group>"; };
 		285DF6BB20E60386001CD2C0 /* UIViewController+XNProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XNProgressHUD.h"; sourceTree = "<group>"; };
 		285DF6BC20E60386001CD2C0 /* XNProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNProgressHUD.m; sourceTree = "<group>"; };
-		285DF6BD20E60386001CD2C0 /* XNRefreshViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNRefreshViewProtocol.h; sourceTree = "<group>"; };
-		285DF6BE20E60386001CD2C0 /* XNRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNRefreshView.h; sourceTree = "<group>"; };
+		285DF6BD20E60386001CD2C0 /* XNAnimaionViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNAnimaionViewProtocol.h; sourceTree = "<group>"; };
 		285DF6BF20E60386001CD2C0 /* UIViewController+XNProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XNProgressHUD.m"; sourceTree = "<group>"; };
 		285DF6C020E60386001CD2C0 /* XNProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNProgressHUD.h; sourceTree = "<group>"; };
 		28A0B359207C9DC900D03037 /* XNProgressHUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XNProgressHUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +79,22 @@
 		28A0B39C207CA6B700D03037 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28A0B39D207CA6B700D03037 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		28DFD3F32080B24E00AE575B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		8EAECBC1228281C100919658 /* XNProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XNProgressHUD.podspec; sourceTree = "<group>"; };
+		9A7E97DD22E2B99C00E47064 /* XNAnimationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNAnimationView.h; sourceTree = "<group>"; };
+		9A7E97DE22E2B99C00E47064 /* XNAnimationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNAnimationView.m; sourceTree = "<group>"; };
+		9A7E97E422E2ECF300E47064 /* XNHUDErrorLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNHUDErrorLayer.h; sourceTree = "<group>"; };
+		9A7E97E522E2ECF300E47064 /* XNHUDErrorLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNHUDErrorLayer.m; sourceTree = "<group>"; };
+		9A7E97EA22E2ED5C00E47064 /* XNHUDProgressLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNHUDProgressLayer.h; sourceTree = "<group>"; };
+		9A7E97EB22E2ED5C00E47064 /* XNHUDProgressLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNHUDProgressLayer.m; sourceTree = "<group>"; };
+		9A7E97ED22E2ED7100E47064 /* XNHUDSuccessLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNHUDSuccessLayer.h; sourceTree = "<group>"; };
+		9A7E97EE22E2ED7100E47064 /* XNHUDSuccessLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNHUDSuccessLayer.m; sourceTree = "<group>"; };
+		9A7E97F022E2ED8900E47064 /* XNHUDLoadingLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNHUDLoadingLayer.h; sourceTree = "<group>"; };
+		9A7E97F122E2ED8900E47064 /* XNHUDLoadingLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNHUDLoadingLayer.m; sourceTree = "<group>"; };
+		9A7E97F322E2EDD800E47064 /* XNHUDLayerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNHUDLayerProtocol.h; sourceTree = "<group>"; };
+		9A7E97F422E556B900E47064 /* XNHUDInfoLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNHUDInfoLayer.h; sourceTree = "<group>"; };
+		9A7E97F522E556B900E47064 /* XNHUDInfoLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNHUDInfoLayer.m; sourceTree = "<group>"; };
+		9AEC3AE822EE91B200EF8B97 /* CustomHUDLoadingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomHUDLoadingLayer.h; sourceTree = "<group>"; };
+		9AEC3AE922EE91B200EF8B97 /* CustomHUDLoadingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomHUDLoadingLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +125,7 @@
 		2842D5A82281D7910023B54C /* XNProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
+				8EAECBC0228281C100919658 /* 1.1.0 */,
 				2842D5B82281D7BC0023B54C /* 1.0.9 */,
 				2842D5A92281D7910023B54C /* 1.0.7 */,
 				2842D5AB2281D7910023B54C /* 1.0.8 */,
@@ -165,13 +187,12 @@
 		285DF6B920E60386001CD2C0 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9A7E97F722E599C000E47064 /* XNHUDAnimationView */,
 				285DF6BB20E60386001CD2C0 /* UIViewController+XNProgressHUD.h */,
 				285DF6BF20E60386001CD2C0 /* UIViewController+XNProgressHUD.m */,
 				285DF6C020E60386001CD2C0 /* XNProgressHUD.h */,
 				285DF6BC20E60386001CD2C0 /* XNProgressHUD.m */,
-				285DF6BE20E60386001CD2C0 /* XNRefreshView.h */,
-				285DF6BA20E60386001CD2C0 /* XNRefreshView.m */,
-				285DF6BD20E60386001CD2C0 /* XNRefreshViewProtocol.h */,
+				285DF6BD20E60386001CD2C0 /* XNAnimaionViewProtocol.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -202,6 +223,7 @@
 		28A0B392207CA6B700D03037 /* demo */ = {
 			isa = PBXGroup;
 			children = (
+				9A7E97E022E2EC8900E47064 /* custom */,
 				28A0B393207CA6B700D03037 /* AppDelegate.h */,
 				28A0B39B207CA6B700D03037 /* AppDelegate.m */,
 				28A0B394207CA6B700D03037 /* Assets.xcassets */,
@@ -213,6 +235,43 @@
 				28A0B395207CA6B700D03037 /* ViewController.m */,
 			);
 			path = demo;
+			sourceTree = "<group>";
+		};
+		8EAECBC0228281C100919658 /* 1.1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				8EAECBC1228281C100919658 /* XNProgressHUD.podspec */,
+			);
+			path = 1.1.0;
+			sourceTree = "<group>";
+		};
+		9A7E97E022E2EC8900E47064 /* custom */ = {
+			isa = PBXGroup;
+			children = (
+				9AEC3AE822EE91B200EF8B97 /* CustomHUDLoadingLayer.h */,
+				9AEC3AE922EE91B200EF8B97 /* CustomHUDLoadingLayer.m */,
+			);
+			path = custom;
+			sourceTree = "<group>";
+		};
+		9A7E97F722E599C000E47064 /* XNHUDAnimationView */ = {
+			isa = PBXGroup;
+			children = (
+				9A7E97F322E2EDD800E47064 /* XNHUDLayerProtocol.h */,
+				9A7E97DD22E2B99C00E47064 /* XNAnimationView.h */,
+				9A7E97DE22E2B99C00E47064 /* XNAnimationView.m */,
+				9A7E97E422E2ECF300E47064 /* XNHUDErrorLayer.h */,
+				9A7E97E522E2ECF300E47064 /* XNHUDErrorLayer.m */,
+				9A7E97EA22E2ED5C00E47064 /* XNHUDProgressLayer.h */,
+				9A7E97EB22E2ED5C00E47064 /* XNHUDProgressLayer.m */,
+				9A7E97ED22E2ED7100E47064 /* XNHUDSuccessLayer.h */,
+				9A7E97EE22E2ED7100E47064 /* XNHUDSuccessLayer.m */,
+				9A7E97F022E2ED8900E47064 /* XNHUDLoadingLayer.h */,
+				9A7E97F122E2ED8900E47064 /* XNHUDLoadingLayer.m */,
+				9A7E97F422E556B900E47064 /* XNHUDInfoLayer.h */,
+				9A7E97F522E556B900E47064 /* XNHUDInfoLayer.m */,
+			);
+			path = XNHUDAnimationView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,6 +388,7 @@
 				2842D5B32281D7910023B54C /* XNProgressHUD.podspec in Resources */,
 				2842D5B42281D7910023B54C /* XNProgressHUD.podspec in Resources */,
 				2842D5B72281D7910023B54C /* XNProgressHUD.podspec in Resources */,
+				8EAECBC2228281C100919658 /* XNProgressHUD.podspec in Resources */,
 				28A0B39E207CA6B700D03037 /* Assets.xcassets in Resources */,
 				28A0B390207C9E9400D03037 /* README.md in Resources */,
 			);
@@ -355,12 +415,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A7E97F222E2ED8900E47064 /* XNHUDLoadingLayer.m in Sources */,
 				285DF6C320E60386001CD2C0 /* UIViewController+XNProgressHUD.m in Sources */,
 				285DF6C220E60386001CD2C0 /* XNProgressHUD.m in Sources */,
 				28A0B3A2207CA6B700D03037 /* main.m in Sources */,
+				9AEC3AEA22EE91B200EF8B97 /* CustomHUDLoadingLayer.m in Sources */,
+				9A7E97EF22E2ED7100E47064 /* XNHUDSuccessLayer.m in Sources */,
 				28A0B39F207CA6B700D03037 /* ViewController.m in Sources */,
-				285DF6C120E60386001CD2C0 /* XNRefreshView.m in Sources */,
 				28A0B3A3207CA6B700D03037 /* AppDelegate.m in Sources */,
+				9A7E97E622E2ECF300E47064 /* XNHUDErrorLayer.m in Sources */,
+				9A7E97DF22E2B99C00E47064 /* XNAnimationView.m in Sources */,
+				9A7E97EC22E2ED5C00E47064 /* XNHUDProgressLayer.m in Sources */,
+				9A7E97F622E556B900E47064 /* XNHUDInfoLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,8 +593,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EDYL3U7YSS;
+				DEVELOPMENT_TEAM = H2V5ST8BY2;
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -536,6 +603,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luohancc.XNProgressHUD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -544,8 +612,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EDYL3U7YSS;
+				DEVELOPMENT_TEAM = H2V5ST8BY2;
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -553,6 +622,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luohancc.XNProgressHUD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

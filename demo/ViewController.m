@@ -7,12 +7,13 @@
 //
 
 #import "ViewController.h"
-#import "XNRefreshView.h"
+#import "XNAnimationView.h"
 #import "XNProgressHUD.h"
 #import "UIViewController+XNProgressHUD.h"
+#import "XNAnimationView.h"
+#import "CustomHUDLoadingLayer.h"
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet XNRefreshView *refreshView;
 @property (weak, nonatomic) IBOutlet UISlider *sliderProgress;
 @property (weak, nonatomic) IBOutlet UISwitch *switchDelayed;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segMaskType;
@@ -20,9 +21,17 @@
 @property (nonatomic, assign) NSTimeInterval delayResponse;
 @property (nonatomic, assign) NSTimeInterval delayDismiss;
 @property (nonatomic, strong) UIWindow *userWindow;
+@property (nonatomic, strong) XNAnimationView *userAnimationView;
 @end
 
 @implementation ViewController
+
+- (XNAnimationView *)userAnimationView {
+    if (!_userAnimationView) {
+        _userAnimationView = [XNAnimationView new];
+    }
+    return _userAnimationView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,58 +41,69 @@
     self.title = @"XNProgressHUD";
     self.view.backgroundColor = [UIColor colorWithRed:228/255.0 green:230/255.0 blue:234/255.0 alpha:1];
     
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"Custom" style:(UIBarButtonItemStylePlain) target:self action:@selector(barButtonClick:)];
+    self.navigationItem.rightBarButtonItem = barButton;
+    
     [self initSubviews];
+}
+
+- (void)barButtonClick:(UIBarButtonItem *)barButton {
+    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ViewController *vc = [board instantiateViewControllerWithIdentifier:@"ViewController_ID"];
+    vc.customized = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (UIWindow *)userWindow {
     if (!_userWindow) {
         _userWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        //_userWindow.backgroundColor = [UIColor colorWithRed:1 green:0 blue:1 alpha:0.1];
         _userWindow.windowLevel = UIWindowLevelAlert + 1;
         _userWindow.hidden = NO;
     }
     return _userWindow;
 }
+
 - (void)initSubviews {
-    // ini trefreshView.
+    // init trefreshView.
     _delayResponse = 1.0f;
     _delayDismiss = 3.f;
-    _refreshView.tintColor = [UIColor colorWithRed:225/255.0 green:101/255.0 blue:49/255.0 alpha:1];
-    _refreshView.lineWidth = 4.f;
-    _refreshView.label.font = [UIFont fontWithName:@"STHeitiTC-Light" size:14.f];
-    _refreshView.style = XNRefreshViewStyleProgress;
-    
-    //init HUD.
+
+    // init HUD.
     [XNHUD setPosition:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height * 0.7)];
-    [XNHUD setTintColor:[UIColor colorWithRed:10/255.0 green:85/255.0 blue:145/255.0 alpha:0.7]];
     [XNHUD setMaskType:(XNProgressHUDMaskTypeCustom) hexColor:0x88000055];
-    
-    //init hud of the vc.
+    // init hud of the vc.
     [self.hud setPosition:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height * 0.7)];
     [self.hud setTintColor:[UIColor colorWithRed:38/255.0 green:50/255.0 blue:56/255.0 alpha:0.8]];
-    [self.hud setRefreshStyle:(XNRefreshViewStyleProgress)];
+    [self.hud setRefreshStyle:(XNAnimationViewStyleProgress)];
     [self.hud setMaskType:(XNProgressHUDMaskTypeBlack)  hexColor:0x00000044];
     [self.hud setMaskType:(XNProgressHUDMaskTypeCustom) hexColor:0xff000044];
 }
 
 // 正在下载
 - (IBAction)sliderProgressClick:(UISlider *)sender {
-    _refreshView.progress = sender.value;
     [self.targetHud showProgressWithTitle:@"正在下载" progress:sender.value];
 }
 
-// 转态视图使用自定义视图
+// 自定义图片
 - (IBAction)switchCustomStatusView:(UISwitch *)sender {
-    XNRefreshView *refreshView = (XNRefreshView *)self.hud.refreshView;
+    XNAnimationView *animationView = (XNAnimationView *)XNHUD.animationView;
     if (sender.on) {
-        [refreshView setInfoImage:[UIImage imageNamed:@"ico_xnprogresshud_info.png"]];
-        [refreshView setErrorImage:[UIImage imageNamed:@"ico_xnprogresshud_error.png"]];
-        [refreshView setSuccessImage:[UIImage imageNamed:@"ico_xnprogresshud_success.png"]];
+        [animationView setInfoImage:[UIImage imageNamed:@"ico_xnprogresshud_info"]];
+        [animationView setErrorImage:[UIImage imageNamed:@"ico_xnprogresshud_error"]];
+        [animationView setSuccessImage:[UIImage imageNamed:@"ico_xnprogresshud_success"]];
     } else {
-        [refreshView setInfoImage:nil];
-        [refreshView setErrorImage:nil];
-        [refreshView setSuccessImage:nil];
+        [animationView setInfoImage:nil];
+        [animationView setErrorImage:nil];
+        [animationView setSuccessImage:nil];
     }
+}
+
+// 自定义加载动画
+- (IBAction)switchLoadingAnimationLayer:(UISwitch *)sender {
+    [XNHUD dismiss];
+    XNAnimationView *animationView = (XNAnimationView *)XNHUD.animationView;
+    CustomHUDLoadingLayer *customLayer = [CustomHUDLoadingLayer new];
+    animationView.loadingLayer = sender.on ? customLayer : nil;
 }
 
 // maskType
@@ -104,6 +124,7 @@
 }
 
 - (XNProgressHUD *)targetHud {
+//    return self.hud;
     return XNHUD;
 }
 

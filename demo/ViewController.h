@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
-
+@property (nonatomic, assign, getter=isCustomized) BOOL customized;
+//- (instancetype)initWithCustomized:(BOOL)customized;
 @end
 

@@ -6,10 +6,10 @@
 //
 
 #import "XNProgressHUD.h"
-#import "XNRefreshView.h"
+#import "XNAnimationView.h"
 
 @interface XNProgressHUD() {
-    UIView *_refreshView;
+    UIView *_animationView;
 }
 @property (nonatomic, strong) NSTimer *displayTimer;
 @property (nonatomic, strong) NSTimer *dismissTimer;
@@ -125,25 +125,23 @@
     }
 }
 
-- (UIView *)refreshView {
-    if(!_refreshView) {
-        XNRefreshView *view = [XNRefreshView new];
+- (UIView *)animationView {
+    if(!_animationView) {
+        XNAnimationView *view = [XNAnimationView new];
         view.tintColor = self.titleLabel.textColor;
         view.lineWidth = 2.f;
-        _refreshView = view;
+        _animationView = view;
     }
-    return _refreshView;
+    return _animationView;
 }
 
-
-- (void)setRefreshView:(UIView *)refreshView {
-    if (refreshView) {
-        _refreshView = refreshView;
-        _refreshView.tintColor = _titleLabel.textColor;
-        [self.contentView addSubview:refreshView];
+- (void)setAnimationView:(UIView *)animationView {
+    if (animationView) {
+        _animationView = animationView;
+        //_animationView.tintColor = _titleLabel.textColor;
+        [self.contentView addSubview:animationView];
     }
 }
-
 
 - (UIView *)shadeContentView {
     if(!_shadeContentView) {
@@ -215,7 +213,7 @@
     _disposableDelayDismiss = disposableDelayDismiss;
 }
 
-- (void)setRefreshStyle:(XNRefreshViewStyle)refreshStyle {
+- (void)setRefreshStyle:(XNAnimationViewStyle)refreshStyle {
     _refreshStyle = refreshStyle;
 }
 
@@ -271,56 +269,63 @@
     _separatorWidth = 5;
     _padding = HUDPaddingMake(8, 8, 8, 8);
     _maskColor = XNHUDMaskColorMake(0x00000000, 0x00000033, 0x00000000);
-    _refreshViewWidth = XNRefreshViewWidth;
-    _tintColor = [UIColor colorWithRed:0/255.f green:0/255.f blue:0/255.f alpha:0.9f];
+    _animationViewWidth = XNAnimationViewWidth;
+    _tintColor = [UIColor colorWithRed:41/255.f green:42/255.f blue:47/255.f alpha:0.7f];
     _shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.f].CGColor;
     _position = [UIApplication sharedApplication].delegate.window.center;
     //shadeView、contentView
     [self.shadeContentView addSubview:self.contentView];
-    [self.contentView addSubview:self.refreshView];
+    [self.contentView addSubview:self.animationView];
     [self.contentView addSubview:self.titleLabel];
 }
 
 - (void)update {
     //updateFrame
     HUDPadding padding = _padding;
-    CGFloat refreshWidth = 0, separatorWidth = 0;
-    CGRect titleLabelFrame = CGRectZero, refreshViewFrame = CGRectZero;
-    CGSize titleLabelSize = CGSizeZero;
+    CGFloat animWidth = 0, separatorWidth = 0;
+    CGRect titleFrame = CGRectZero, animFrame = CGRectZero;
+    CGSize titleSize = CGSizeZero;
     if (self.title && self.title.length > 0)
-        titleLabelSize = [self.titleLabel sizeThatFits:CGSizeMake(HUDScreenSize.width * 0.7f, MAXFLOAT)];
+        titleSize = [self.titleLabel sizeThatFits:CGSizeMake(HUDScreenSize.width * 0.7f, MAXFLOAT)];
     if (self.style == XNProgressHUDStyleLoading || self.style == XNProgressHUDStyleLoadingAndTitle) {
-        refreshWidth = _refreshViewWidth;
+        animWidth = _animationViewWidth;
         if (self.style == XNProgressHUDStyleLoadingAndTitle)
             separatorWidth = _separatorWidth;
-    }
-    if (refreshWidth > 0 && (self.style == XNProgressHUDStyleLoading || self.orientation == XNProgressHUDOrientationVertical)) {
-        if (refreshWidth < XNRefreshViewWidth * 1.5) {
-            refreshWidth = XNRefreshViewWidth * 1.5;
+        if ((self.style == XNProgressHUDStyleLoading || self.orientation == XNProgressHUDOrientationVertical)) {
+            if (animWidth < XNAnimationViewWidth * 1.5) {
+                animWidth = XNAnimationViewWidth * 1.5;
+            }
         }
     }
     CGFloat width = 0, height = 0;
     if (self.orientation == XNProgressHUDOrientationHorizontal) {
-        width = padding.left + padding.right + separatorWidth + refreshWidth + titleLabelSize.width;
-        height = MAX(padding.top + padding.bottom + refreshWidth, padding.top + padding.bottom + titleLabelSize.height);
+        width = padding.left + padding.right + separatorWidth + animWidth + titleSize.width;
+        height = MAX(padding.top + padding.bottom + animWidth, padding.top + padding.bottom + titleSize.height);
         _frame.size = CGSizeMake(width, height);
         _frame.origin = CGPointMake(_position.x-_frame.size.width/2, _position.y-_frame.size.height/2);
-        refreshViewFrame = CGRectMake(padding.left, (_frame.size.height-refreshWidth)/2, refreshWidth, refreshWidth);
-        titleLabelFrame = CGRectMake(padding.left + refreshWidth + separatorWidth, (_frame.size.height-titleLabelSize.height)/2, titleLabelSize.width, titleLabelSize.height);
+        if (animWidth > 0) {
+            animFrame = CGRectMake(padding.left, (_frame.size.height-animWidth)/2, animWidth, animWidth);
+        }
+        titleFrame = CGRectMake(padding.left + animWidth + separatorWidth, (_frame.size.height-titleSize.height)/2, titleSize.width, titleSize.height);
     } else {
-        width = MAX(padding.left + padding.right + refreshWidth, padding.left + padding.right + titleLabelSize.width);
-        height = padding.top + padding.bottom + separatorWidth + refreshWidth + titleLabelSize.height;
+        width = MAX(padding.left + padding.right + animWidth, padding.left + padding.right + titleSize.width);
+        height = padding.top + padding.bottom + separatorWidth + animWidth + titleSize.height;
         _frame.size = CGSizeMake(width, height);
         _frame.origin = CGPointMake(_position.x-_frame.size.width/2, _position.y-_frame.size.height/2);
-        refreshViewFrame = CGRectMake((_frame.size.width-refreshWidth)/2, padding.top, refreshWidth, refreshWidth);
-        titleLabelFrame = CGRectMake((_frame.size.width-titleLabelSize.width)/2, padding.top + separatorWidth + refreshWidth, titleLabelSize.width, titleLabelSize.height);
+        if (animWidth > 0) {
+            animFrame = CGRectMake((_frame.size.width-animWidth)/2, padding.top, animWidth, animWidth);
+        }
+        titleFrame = CGRectMake((_frame.size.width-titleSize.width)/2, padding.top + separatorWidth + animWidth, titleSize.width, titleSize.height);
     }
     self.shadeContentView.frame = self.frame;
     self.contentView.frame = self.shadeContentView.bounds;
-    if(! CGRectEqualToRect(titleLabelFrame, CGRectZero))
-        self.titleLabel.frame = titleLabelFrame;
-    if(! CGRectEqualToRect(refreshViewFrame, CGRectZero))
-        self.refreshView.frame = refreshViewFrame;
+    if(! CGRectEqualToRect(titleFrame, CGRectZero))
+        self.titleLabel.frame = titleFrame;
+    if(! CGRectEqualToRect(animFrame, CGRectZero))
+        self.animationView.frame = animFrame;
+    else {
+        self.animationView.frame = CGRectZero;////
+    }
 }
 
 #pragma mark - show hud on window
@@ -335,7 +340,7 @@
  */
 - (void)show {
     [self setStyle:XNProgressHUDStyleLoading];
-    [self setRefreshStyle:XNRefreshViewStyleLoading];
+    [self setRefreshStyle:XNAnimationViewStyleLoading];
     [self setTitle:nil];
     [self display];
 }
@@ -350,7 +355,7 @@
  */
 - (void)showWithTitle:(nullable NSString *)title {
     [self setStyle:XNProgressHUDStyleTitle];
-    [self setRefreshStyle:XNRefreshViewStyleNone];
+    [self setRefreshStyle:XNAnimationViewStyleNone];
     [self setTitle:title];
     [self display];
 }
@@ -365,7 +370,7 @@
  */
 - (void)showLoadingWithTitle:(nullable NSString *)title {
     [self setStyle:[self styleWithTitle:title]];
-    [self setRefreshStyle:XNRefreshViewStyleLoading];
+    [self setRefreshStyle:XNAnimationViewStyleLoading];
     [self setTitle:title];
     [self display];
 }
@@ -384,7 +389,7 @@
 
 - (void)showProgressWithTitle:(nullable NSString *)title progress:(float)progress {
     [self setStyle:[self styleWithTitle:title]];
-    [self setRefreshStyle:XNRefreshViewStyleProgress];
+    [self setRefreshStyle:XNAnimationViewStyleProgress];
     [self setTitle:title];
     [self setProgress:progress];
     [self display];
@@ -400,7 +405,7 @@
  */
 - (void)showInfoWithTitle:(nullable NSString *)title {
     [self setStyle:[self styleWithTitle:title]];
-    [self setRefreshStyle:XNRefreshViewStyleInfoImage];
+    [self setRefreshStyle:XNAnimationViewStyleInfoImage];
     [self setTitle:title];
     [self display];
 }
@@ -415,10 +420,9 @@
  */
 - (void)showErrorWithTitle:(nullable NSString *)title {
     [self setStyle:[self styleWithTitle:title]];
-    [self setRefreshStyle:XNRefreshViewStyleError];
+    [self setRefreshStyle:XNAnimationViewStyleError];
     [self setTitle:title];
     [self display];
-    
 }
 
 - (void)showErrorWithTitle:(nullable NSString *)title maskType:(XNProgressHUDMaskType)maskType {
@@ -431,10 +435,9 @@
  */
 - (void)showSuccessWithTitle:(nullable NSString*)title {
     [self setStyle:[self styleWithTitle:title]];
-    [self setRefreshStyle:XNRefreshViewStyleSuccess];
+    [self setRefreshStyle:XNAnimationViewStyleSuccess];
     [self setTitle:title];
     [self display];
-    
 }
 
 - (void)showSuccessWithTitle:(nullable NSString*)title maskType:(XNProgressHUDMaskType)maskType {
@@ -470,19 +473,19 @@
     switch (_style) {
         case XNProgressHUDStyleTitle:{ //标题
             self.titleLabel.text = self.title;
-            [self removeFromSuperview:self.refreshView];
+            [self removeFromSuperview:self.animationView];
             [self addSubviewIfNotContain:self.titleLabel superView:self.contentView];
         }
             break;
         case XNProgressHUDStyleLoading:{ //加载中
             self.titleLabel.text = self.title = nil;
             [self removeFromSuperview:self.titleLabel];
-            [self addSubviewIfNotContain:self.refreshView superView:self.contentView];
+            [self addSubviewIfNotContain:self.animationView superView:self.contentView];
         }
             break;
         case XNProgressHUDStyleLoadingAndTitle:{//标题+加载中
             self.titleLabel.text = self.title;
-            [self addSubviewIfNotContain:self.refreshView superView:self.contentView];
+            [self addSubviewIfNotContain:self.animationView superView:self.contentView];
             [self addSubviewIfNotContain:self.titleLabel  superView:self.contentView];
         }
             break;
@@ -490,9 +493,9 @@
             break;
     }
     // 设置RefreshView的显示内容
-    [self setStyleInRefreshView:self.refreshStyle];
-    if(self.refreshStyle == XNRefreshViewStyleProgress) {
-        [self setProgressInRefreshView:self.progress];
+    [self setStyleInAnimationView:self.refreshStyle];
+    if(self.refreshStyle == XNAnimationViewStyleProgress) {
+        [self setProgressInAnimationView:self.progress];
     }
     __block UIView *targetView = self.targetView;
     // maskView
@@ -503,22 +506,25 @@
     // contentView
     [self addSubviewIfNotContain:self.shadeContentView superView:targetView];
     // 如果没有显示，需要先调整位置，防止视图跳动
-    BOOL showing = self.showing;
+    __block BOOL showing = self.showing;
+    self.showing = YES;
     if(!showing) {
         self.maskView.alpha = 0.f;
         self.shadeContentView.alpha = 0.f;
         [self update];
+    } else {
+        self.animationView.alpha = 0.f;
     }
-    self.showing = YES;
-    [self startRefreshAnimation];
+    [self startAnimation];
     if ([self isWindowAndIsNotKeyWindow:(targetView)]) {
         targetView.hidden = NO;
     }
     HUDWeakSelf;
-    [UIView animateWithDuration:self.duration animations:^{
+    [UIView animateWithDuration:_duration animations:^{
         // 如果正在显示，通过动画过度Frame
         if(showing) {
             [weakSelf update];
+            weakSelf.animationView.alpha = 1.f;
         }else{
             weakSelf.maskView.alpha = 1.f;
             weakSelf.shadeContentView.alpha = 1.f;
@@ -531,11 +537,11 @@
     if(_disposableDelayDismiss > 0) {
         [self startDismissTimerWithDuration:_disposableDelayDismiss];
     }else{
-        switch ([self getStyleFromRefreshView]) {
-            case XNRefreshViewStyleNone:
-            case XNRefreshViewStyleInfoImage:
-            case XNRefreshViewStyleError:
-            case XNRefreshViewStyleSuccess:
+        switch ([self getStyleFromAnimationView]) {
+            case XNAnimationViewStyleNone:
+            case XNAnimationViewStyleInfoImage:
+            case XNAnimationViewStyleError:
+            case XNAnimationViewStyleSuccess:
                 [self startDismissTimerWithDuration:self.minimumDelayDismissDuration];
                 break;
             default:
@@ -559,7 +565,7 @@
     if(!showing) return;
     self.showing = NO;
     if(_hudDismissBlock) _hudDismissBlock();
-    [self stopRefreshAnimation];
+    [self stopAnimation];
     __block UIView *targetView = self.targetView;
     HUDWeakSelf;
     [UIView animateWithDuration:self.duration animations:^{
@@ -603,38 +609,38 @@
 }
 
 #pragma mark - 控制RefreshView显示状态的方法
-- (XNRefreshViewStyle)getStyleFromRefreshView {
-    XNRefreshViewStyle style = XNRefreshViewStyleNone;
-    if ([self.refreshView respondsToSelector:@selector(xn_getStyle)]) {
-        NSNumber *value = [self.refreshView performSelector:@selector(xn_getStyle)];
+- (XNAnimationViewStyle)getStyleFromAnimationView {
+    XNAnimationViewStyle style = XNAnimationViewStyleNone;
+    if ([self.animationView respondsToSelector:@selector(xn_getStyle)]) {
+        NSNumber *value = [self.animationView performSelector:@selector(xn_getStyle)];
         style = value.unsignedIntegerValue;
     }
     return style;
 }
 
-- (void)setStyleInRefreshView:(XNRefreshViewStyle)style {
-    if ([self.refreshView respondsToSelector:@selector(xn_setStyle:)]) {
+- (void)setStyleInAnimationView:(XNAnimationViewStyle)style {
+    if ([self.animationView respondsToSelector:@selector(xn_setStyle:)]) {
         NSNumber *value = [NSNumber numberWithUnsignedInteger:style];
-        [self.refreshView performSelector:@selector(xn_setStyle:) withObject:value];
+        [self.animationView performSelector:@selector(xn_setStyle:) withObject:value];
     }
 }
 
-- (void)startRefreshAnimation {
-    if ([self.refreshView respondsToSelector:@selector(xn_startAnimation)]) {
-        [self.refreshView performSelector:@selector(xn_startAnimation)];
+- (void)startAnimation {
+    if ([self.animationView respondsToSelector:@selector(xn_startAnimation)]) {
+        [self.animationView performSelector:@selector(xn_startAnimation)];
     }
 }
 
-- (void)stopRefreshAnimation {
-    if ([self.refreshView respondsToSelector:@selector(xn_stopAnimation)]) {
-        [self.refreshView performSelector:@selector(xn_stopAnimation)];
+- (void)stopAnimation {
+    if ([self.animationView respondsToSelector:@selector(xn_stopAnimation)]) {
+        [self.animationView performSelector:@selector(xn_stopAnimation)];
     }
 }
 
-- (void)setProgressInRefreshView:(CGFloat)progress {
-    if ([self.refreshView respondsToSelector:@selector(xn_setProgress:)]) {
+- (void)setProgressInAnimationView:(CGFloat)progress {
+    if ([self.animationView respondsToSelector:@selector(xn_setProgress:)]) {
         NSNumber *value = [NSNumber numberWithFloat:progress];
-        [self.refreshView performSelector:@selector(xn_setProgress:) withObject:value];
+        [self.animationView performSelector:@selector(xn_setProgress:) withObject:value];
     }
 }
 @end
